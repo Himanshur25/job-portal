@@ -1,18 +1,22 @@
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Open Sans',serif;
+    font-family: 'poppins';
 }
 
 .img{
 background-color: #6B5DF2;
-height: 820px;
+height: 700px;
 background-size: cover;
 background-repeat: no-repeat;
--webkit-clip-path: polygon(100% 0, 100% 87%, 0 100%, 0 0);
-clip-path: polygon(100% 0, 100% 87%, 0 100%, 0 0);
+-webkit-clip-path: polygon(100% 0, 100% 81%, 0 95%, 0 0);
+clip-path: polygon(100% 0, 100% 81%, 0 95%, 0 0);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+
 }
 #navbar {
     display: flex;
@@ -39,8 +43,6 @@ clip-path: polygon(100% 0, 100% 87%, 0 100%, 0 0);
     background-clip: text;
     transition: 1.6s;
   }
-  
-  
   #navbar ul li a:hover {
     --_p: 0%;
   }
