@@ -5,7 +5,7 @@
     font-family: 'poppins';
 }
 
-.img{
+.banner-img{
 background-color: #6B5DF2;
 height: 700px;
 background-size: cover;
@@ -45,6 +45,9 @@ justify-content: center;
   }
   #navbar ul li a:hover {
     --_p: 0%;
+  }
+  .logo >span{
+    color: #f7cc53;
   }
   @media (max-width: 640px) {
     #navbar {

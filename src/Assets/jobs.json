@@ -1,0 +1,147 @@
+[
+  {
+    "id": 1,
+    "company": "Amazon",
+    "logo": "amazon.png",
+    "position": "Fullstack Developer",
+    "role": "Fullstack",
+    "level": "Frontend",
+    "contract": "Part Time",
+    "location": "Remote",
+    "posted": "3min ago"
+  },
+  {
+    "id": 2,
+    "company": "FLP",
+    "logo": "flp.jpeg",
+    "position": "Digital Marketing",
+    "role": "Frontend",
+    "level": "Negative",
+    "contract": "Part Time",
+    "location": "Remote",
+    "posted": "1h ago"
+  },
+  {
+    "id": 3,
+    "company": "Paytm",
+    "logo": "paytm.png",
+    "position": "Jr. Frontend Developer",
+    "role": "Frontend",
+    "level": "Junior",
+    "contract": "Full Time",
+    "location": "Mumbai",
+    "posted": "5d ago"
+  },
+  {
+    "id": 4,
+    "company": "Tesla",
+    "logo": "tesla.png",
+    "position": "Software Engineer",
+    "role": "FullStack",
+    "level": "Midweight",
+    "contract": "Full Time",
+    "location": "Los Angeles",
+    "posted": "2m ago"
+  },
+  {
+    "id": 5,
+    "company": "Elastic Run",
+    "logo": "elastic-run.jpeg",
+    "position": "Jr. Backend Developer",
+    "role": "Backend",
+    "level": "Junior",
+    "contract": "Full Time",
+    "location": "Jaipur",
+    "posted": "1y ago"
+  },
+  {
+    "id": 6,
+    "company": "TCS",
+    "logo": "tcs.webp",
+    "position": "Junior Developer",
+    "role": "Frontend",
+    "level": "Negative",
+    "contract": "Full Time",
+    "location": "Bangalore",
+    "posted": "4d ago"
+  },
+  {
+    "id": 7,
+    "company": "Myntra",
+    "logo": "myntra.png",
+    "position": "Jr. Frontend Developer",
+    "role": "Frontend",
+    "level": "Junior",
+    "contract": "Part Time",
+    "location": "Remote",
+    "posted": "2h ago"
+  },
+  {
+    "id": 8,
+    "company": "Synopsys",
+    "logo": "synopsys.png",
+    "position": "Full Stack Engineer",
+    "role": "Fullstack",
+    "level": "Negative",
+    "contract": "Full Time",
+    "location": "Hyderabad",
+    "posted": "3h ago"
+  },
+  {
+    "id": 9,
+    "company": "Optum",
+    "logo": "optum.png",
+    "position": "Front-End Developer",
+    "role": "Frontend",
+    "level": "Junior",
+    "contract": "Part Time",
+    "location": "New Delhi",
+    "posted": "1min ago"
+  },
+  {
+    "id": 10,
+    "company": "Infosys",
+    "logo": "infosys.png",
+    "position": "React Developer",
+    "role": "Frontend",
+    "level": "Senior",
+    "contract": "Full Time",
+    "location": "Bangalore",
+    "posted": "3d ago"
+  },
+  {
+    "id": 11,
+    "company": "Tech Mahindra",
+    "logo": "tech-mahindra.png",
+    "position": "NodeJS Developer",
+    "role": "Backend",
+    "level": "Junior",
+    "contract": "Full Time",
+    "location": "Jaipur",
+    "posted": "1h ago"
+  },
+  {
+    "id": 12,
+    "company": "Cloud Mentor",
+    "logo": "cloud-mentor.jpeg",
+    "position": "Software Engineer",
+    "role": "FullStack",
+    "level": "Negative",
+    "contract": "Part Time",
+    "location": "Surat",
+    "posted": "6h ago"
+  },
+    {
+      "id": 13,
+      "company": "Flipkart",
+      "logo": "flipkart.jpeg",
+      "position": "Devops Engineer",
+      "role": "Devops",
+      "level": "Negative",
+      "contract": "Full Time",
+      "location": "Mumbai",
+      "posted": "15h ago"
+    }
+]
+
+
