@@ -8,7 +8,7 @@
     "level": "Frontend",
     "contract": "Part Time",
     "location": "Remote",
-    "posted": "3min ago"
+    "posted": "2022-10-15"
   },
   {
     "id": 2,
@@ -19,7 +19,7 @@
     "level": "Negative",
     "contract": "Part Time",
     "location": "Remote",
-    "posted": "1h ago"
+    "posted": "2022-11-15"
   },
   {
     "id": 3,
@@ -30,7 +30,7 @@
     "level": "Junior",
     "contract": "Full Time",
     "location": "Mumbai",
-    "posted": "5d ago"
+    "posted": "2022-09-15"
   },
   {
     "id": 4,
@@ -41,7 +41,7 @@
     "level": "Midweight",
     "contract": "Full Time",
     "location": "Los Angeles",
-    "posted": "2m ago"
+    "posted": "2022-07-15"
   },
   {
     "id": 5,
@@ -52,18 +52,18 @@
     "level": "Junior",
     "contract": "Full Time",
     "location": "Jaipur",
-    "posted": "1y ago"
+    "posted": "2022-04-15"
   },
   {
     "id": 6,
     "company": "TCS",
     "logo": "tcs.webp",
-    "position": "Junior Developer",
+    "position": "Jr. Devops Engineer",
     "role": "Frontend",
     "level": "Negative",
     "contract": "Full Time",
     "location": "Bangalore",
-    "posted": "4d ago"
+    "posted": "2022-08-15"
   },
   {
     "id": 7,
@@ -74,7 +74,7 @@
     "level": "Junior",
     "contract": "Part Time",
     "location": "Remote",
-    "posted": "2h ago"
+    "posted": "2022-09-15"
   },
   {
     "id": 8,
@@ -85,7 +85,7 @@
     "level": "Negative",
     "contract": "Full Time",
     "location": "Hyderabad",
-    "posted": "3h ago"
+    "posted": "2022-11-15"
   },
   {
     "id": 9,
@@ -96,7 +96,7 @@
     "level": "Junior",
     "contract": "Part Time",
     "location": "New Delhi",
-    "posted": "1min ago"
+    "posted": "2022-10-15"
   },
   {
     "id": 10,
@@ -107,7 +107,7 @@
     "level": "Senior",
     "contract": "Full Time",
     "location": "Bangalore",
-    "posted": "3d ago"
+    "posted": "2022-12-15"
   },
   {
     "id": 11,
@@ -118,7 +118,7 @@
     "level": "Junior",
     "contract": "Full Time",
     "location": "Jaipur",
-    "posted": "1h ago"
+    "posted": "2022-08-15"
   },
   {
     "id": 12,
@@ -129,18 +129,18 @@
     "level": "Negative",
     "contract": "Part Time",
     "location": "Surat",
-    "posted": "6h ago"
+    "posted": "2022-01-15"
   },
     {
       "id": 13,
       "company": "Flipkart",
       "logo": "flipkart.jpeg",
-      "position": "Devops Engineer",
+      "position": "Sr. Devops Engineer",
       "role": "Devops",
       "level": "Negative",
       "contract": "Full Time",
       "location": "Mumbai",
-      "posted": "15h ago"
+      "posted": "2021-05-15"
     }
 ]
 

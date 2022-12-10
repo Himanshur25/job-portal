@@ -4,7 +4,7 @@
   justify-content: center;
   flex-direction: column;
 }
-h3 {
+.title > h3 {
   text-align: center;
   color: #fff;
   font-weight: bold;

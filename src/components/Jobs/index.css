@@ -11,12 +11,14 @@
   min-height: 100px;
   align-items: center;
   background-color: #fff;
+  
 }
 .job-card:hover {
-  box-shadow: 1px 1px 5px 11px rgba(222, 217, 217, 0.75);
-  -webkit-box-shadow: 1px 1px 5px 11px rgba(222, 217, 217, 0.75);
-  -moz-box-shadow: 1px 1px 5px 11px rgba(222, 217, 217, 0.75);
-  transition: 1s ease;
+  box-shadow: 1px 2px 5px 5px rgba(222,217,217,0.75);
+  -webkit-box-shadow: 1px 2px 5px 5px rgba(222,217,217,0.75);
+  -moz-box-shadow: 1px 2px 5px 5px rgba(222,217,217,0.75);
+  transition: 70ms ease;
+  transform: scale(1.02);
 }
 
 .job-name {
@@ -38,6 +40,7 @@
 .job-detail > h3 {
   color: #091e5a;
   font-size: 1.3rem;
+  margin-bottom: 15px;
 }
 .job-detail > p {
   display: -webkit-box;
@@ -48,25 +51,24 @@
 .job-posted {
   font-size: 0.8rem;
 }
-.job-posting {
-  display: flex;
-  flex-direction: column;
-}
 .job-posting > a {
   text-decoration: none;
   color: white;
   font-weight: bold;
   background-color: #4fb075;
-  border: 2px solid white;
   padding: 10px;
+}
+.job-posting >a:hover{
+  background-color: #1945f5;
+  transition: 400ms ease-in-out;
 }
 .category {
   display: flex;
-  gap: 20px;
+  gap: 22px;
 }
 .job-background {
   background: #6b5df2;
-  height: 200px;
+  height: 270px;
   -webkit-clip-path: polygon(100% 0, 100% 81%, 50% 90%, 0 83%, 0 0);
   clip-path: polygon(100% 0, 100% 81%, 50% 90%, 0 83%, 0 0);
 }
@@ -75,5 +77,5 @@
   align-items: center;
   color: white;
   font-size: 35px;
-  padding: 50px 0px;
+  padding: 80px 0px;
 }

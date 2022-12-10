@@ -24,6 +24,7 @@ justify-content: center;
     background: #fff;
     color: #000;
     padding: 1.1rem;
+    position: sticky;
   }
   
   #navbar ul {
@@ -41,7 +42,7 @@ justify-content: center;
     background: linear-gradient(90deg,#6B5DF2 50%,#000 0)  var(--_p,100%)/200% no-repeat;
     -webkit-background-clip: text;
     background-clip: text;
-    transition: 1.6s;
+    transition: 1s;
   }
   #navbar ul li a:hover {
     --_p: 0%;
