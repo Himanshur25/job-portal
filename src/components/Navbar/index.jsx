@@ -6,13 +6,15 @@ const Navbar = () => {
     <>
       <div class="main-page">
         <nav id="navbar">
-          <h1 class="logo">Job-O-Phobia</h1>
+          <h1 class="logo">
+            Job<span>Hunt</span>
+          </h1>
           <ul>
             <li>
-              <a href="#">Home</a>
+              <a href="/Home">Home</a>
             </li>
             <li>
-              <a href="#">Jobs</a>
+              <a href="/Jobs">Jobs</a>
             </li>
             <li>
               <a href="#">Companies</a>

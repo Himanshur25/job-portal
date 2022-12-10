@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="img">
+      <div className="banner-img">
         <div className="title">
           <h3>
             Find the <span>Right Job</span> In the
@@ -18,7 +18,7 @@ const Home = () => {
           </div>
         </div>
         <div className="button">
-          <a href="">Browse for Jobs</a>
+          <a href="/Jobs">Browse Jobs</a>
         </div>
       </div>
       <div className="social-media">

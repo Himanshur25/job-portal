@@ -1,0 +1,147 @@
+[
+  {
+    "id": 1,
+    "company": "Amazon",
+    "logo": "amazon.png",
+    "position": "Fullstack Developer",
+    "role": "Fullstack",
+    "level": "Frontend",
+    "contract": "Part Time",
+    "location": "Remote",
+    "posted": "2022-10-15"
+  },
+  {
+    "id": 2,
+    "company": "FLP",
+    "logo": "flp.jpeg",
+    "position": "Digital Marketing",
+    "role": "Frontend",
+    "level": "Negative",
+    "contract": "Part Time",
+    "location": "Remote",
+    "posted": "2022-11-15"
+  },
+  {
+    "id": 3,
+    "company": "Paytm",
+    "logo": "paytm.png",
+    "position": "Jr. Frontend Developer",
+    "role": "Frontend",
+    "level": "Junior",
+    "contract": "Full Time",
+    "location": "Mumbai",
+    "posted": "2022-09-15"
+  },
+  {
+    "id": 4,
+    "company": "Tesla",
+    "logo": "tesla.png",
+    "position": "Software Engineer",
+    "role": "FullStack",
+    "level": "Midweight",
+    "contract": "Full Time",
+    "location": "Los Angeles",
+    "posted": "2022-07-15"
+  },
+  {
+    "id": 5,
+    "company": "Elastic Run",
+    "logo": "elastic-run.jpeg",
+    "position": "Jr. Backend Developer",
+    "role": "Backend",
+    "level": "Junior",
+    "contract": "Full Time",
+    "location": "Jaipur",
+    "posted": "2022-04-15"
+  },
+  {
+    "id": 6,
+    "company": "TCS",
+    "logo": "tcs.webp",
+    "position": "Jr. Devops Engineer",
+    "role": "Frontend",
+    "level": "Negative",
+    "contract": "Full Time",
+    "location": "Bangalore",
+    "posted": "2022-08-15"
+  },
+  {
+    "id": 7,
+    "company": "Myntra",
+    "logo": "myntra.png",
+    "position": "Jr. Frontend Developer",
+    "role": "Frontend",
+    "level": "Junior",
+    "contract": "Part Time",
+    "location": "Remote",
+    "posted": "2022-09-15"
+  },
+  {
+    "id": 8,
+    "company": "Synopsys",
+    "logo": "synopsys.png",
+    "position": "Full Stack Engineer",
+    "role": "Fullstack",
+    "level": "Negative",
+    "contract": "Full Time",
+    "location": "Hyderabad",
+    "posted": "2022-11-15"
+  },
+  {
+    "id": 9,
+    "company": "Optum",
+    "logo": "optum.png",
+    "position": "Front-End Developer",
+    "role": "Frontend",
+    "level": "Junior",
+    "contract": "Part Time",
+    "location": "New Delhi",
+    "posted": "2022-10-15"
+  },
+  {
+    "id": 10,
+    "company": "Infosys",
+    "logo": "infosys.png",
+    "position": "React Developer",
+    "role": "Frontend",
+    "level": "Senior",
+    "contract": "Full Time",
+    "location": "Bangalore",
+    "posted": "2022-12-15"
+  },
+  {
+    "id": 11,
+    "company": "Tech Mahindra",
+    "logo": "tech-mahindra.png",
+    "position": "NodeJS Developer",
+    "role": "Backend",
+    "level": "Junior",
+    "contract": "Full Time",
+    "location": "Jaipur",
+    "posted": "2022-08-15"
+  },
+  {
+    "id": 12,
+    "company": "Cloud Mentor",
+    "logo": "cloud-mentor.jpeg",
+    "position": "Software Engineer",
+    "role": "FullStack",
+    "level": "Negative",
+    "contract": "Part Time",
+    "location": "Surat",
+    "posted": "2022-01-15"
+  },
+    {
+      "id": 13,
+      "company": "Flipkart",
+      "logo": "flipkart.jpeg",
+      "position": "Sr. Devops Engineer",
+      "role": "Devops",
+      "level": "Negative",
+      "contract": "Full Time",
+      "location": "Mumbai",
+      "posted": "2021-05-15"
+    }
+]
+
+
