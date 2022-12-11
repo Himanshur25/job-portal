@@ -2,7 +2,7 @@
   margin: 1%;
   padding: 0.7rem;
   background-color: #f9f9f9;
-  width: 70%;
+  width: 1000px;
 }
 .job-card {
   display: flex;
@@ -78,4 +78,8 @@
   color: white;
   font-size: 35px;
   padding: 80px 0px;
+}
+.job-section{
+  display: flex;
+  background: #F7F7FB;
 }
