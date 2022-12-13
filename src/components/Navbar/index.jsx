@@ -17,10 +17,6 @@ const Navbar = () => {
               <a href="/Jobs">Jobs</a>
             </li>
             <li>
-              <a href="#">Companies</a>
-            </li>
-
-            <li>
               <a href="#">Post Job</a>
             </li>
           </ul>
