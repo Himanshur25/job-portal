@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar";
+import { Link } from "react-router-dom";
 import "./index.css";
 
 const Home = () => {
@@ -18,7 +19,7 @@ const Home = () => {
           </div>
         </div>
         <div className="button">
-          <a href="/Jobs">Browse Jobs</a>
+          <Link to="/Jobs">Browse Jobs</Link>
         </div>
       </div>
       <div className="social-media">

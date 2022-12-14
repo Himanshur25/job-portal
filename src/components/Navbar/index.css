@@ -6,12 +6,12 @@
 }
 
 .banner-img{
-background-color: #6B5DF2;
+background:url("../../Assets/images/cool-background.png");
 height: 700px;
 background-size: cover;
 background-repeat: no-repeat;
--webkit-clip-path: polygon(100% 0, 100% 81%, 0 95%, 0 0);
-clip-path: polygon(100% 0, 100% 81%, 0 95%, 0 0);
+-webkit-clip-path: polygon(100% 0, 100% 90%, 0 95%, 0 0);
+clip-path: polygon(100% 0, 100% 90%, 0 95%, 0 0);
 display: flex;
 flex-direction: column;
 align-items: center;
