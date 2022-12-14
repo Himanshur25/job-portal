@@ -1,23 +1,28 @@
 import React from "react";
+import {Link} from "react-router-dom"
 import "./index.css";
 
 const Navbar = () => {
   return (
     <>
-      <div class="main-page">
+      <div className="main-page">
         <nav id="navbar">
-          <h1 class="logo">
+          <h1 className="logo">
             Job<span>Hunt</span>
           </h1>
+
           <ul>
             <li>
-              <a href="/Home">Home</a>
+              <Link to="/Home">Home</Link>
             </li>
             <li>
-              <a href="/Jobs">Jobs</a>
+              <Link to="/Jobs">Jobs</Link>
             </li>
             <li>
-              <a href="#">Post Job</a>
+              <Link to="/Postjob">Post Job</Link>
+            </li>
+            <li>
+              <Link to="">Save Job</Link>
             </li>
           </ul>
         </nav>

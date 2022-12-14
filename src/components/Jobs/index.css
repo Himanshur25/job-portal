@@ -2,7 +2,7 @@
   margin: 1%;
   padding: 0.7rem;
   background-color: #f9f9f9;
-  width: 1000px;
+  width: 100%;
 }
 .job-card {
   display: flex;
@@ -41,6 +41,7 @@
   color: #091e5a;
   font-size: 1.3rem;
   margin-bottom: 15px;
+  width: 700px;
 }
 .job-detail > p {
   display: -webkit-box;
@@ -56,6 +57,8 @@
   color: white;
   font-weight: bold;
   background-color: #4fb075;
+  display: flex;
+  gap: 10px;
   padding: 10px;
 }
 .job-posting >a:hover{
@@ -82,4 +85,37 @@
 .job-section{
   display: flex;
   background: #F7F7FB;
+}
+.jobs-for-you{
+  width: 100%;
+}
+.job-page{
+  width: 75%;
+}
+@media (max-width:855px)
+{
+.job-page{
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 10px;
+    
+}
+
+.job-detail>h4 {
+  font-size: 11px;
+}
+.job-detail>h3{
+  font-size: 15px;
+}.category>p{
+  font-size: 10px;
+  flex-wrap: wrap;
+}
+.job-card{
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+}
+.save-button{
+  font-size: 22px;
 }
