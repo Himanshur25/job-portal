@@ -11,15 +11,7 @@ const PostJob = () => {
   const [experience, setExperience] = useState("");
   const [role, setRole] = useState("");
   const [location, setLocation] = useState("");
-  const obj = {
-    company: company,
-    position: position,
-    salary: salary,
-    experience: experience,
-    role: role,
-    location: location,
-    logo: logo,
-  };
+
 
   const getBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -37,7 +29,16 @@ const PostJob = () => {
     });
   };
 
-  const handle = (e) => {
+  const handleSubmitButton = (e) => {
+      const jobPost = {
+        company,
+        position,
+        salary,
+        experience,
+        role,
+        location,
+        logo
+      };
     e.preventDefault();
     if (company === "") {
       window.alert("Enter name");
@@ -45,13 +46,13 @@ const PostJob = () => {
       window.alert("Enter position");
     } else if (experience === "") {
       window.alert("Enter Experience");
-    } else if (salary === "") (window.alert("Enter Salary"));
+    } else if (salary === "") window.alert("Enter Salary");
     else {
       let savedItem = [];
       if (localStorage.getItem("item")) {
         savedItem = JSON.parse(localStorage.getItem("item"));
       }
-      localStorage.setItem("item", JSON.stringify([...savedItem,obj]));
+      localStorage.setItem("item", JSON.stringify([...savedItem, {jobPost}]));
       window.alert("Form Submitted Successfully");
     }
   };
@@ -125,7 +126,7 @@ const PostJob = () => {
               <option>Backend</option>
               <option>Full Stack</option>
               <option>Devops</option>
-              <option>Other</option>
+              <option>Digital Marketing</option>
             </select>
           </div>
           <div className="form-group">
@@ -203,7 +204,7 @@ const PostJob = () => {
             </select>
           </div>
           <div className="form-group">
-            <button type="submit" className="submit-button" onClick={handle}>
+            <button type="submit" className="submit-button" onClick={handleSubmitButton}>
               Submit
             </button>
           </div>
