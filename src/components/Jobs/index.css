@@ -2,7 +2,7 @@
   margin: 1%;
   padding: 0.7rem;
   background-color: #f9f9f9;
-  width: 1000px;
+  width: 100%;
 }
 .job-card {
   display: flex;
@@ -51,12 +51,13 @@
 .job-posted {
   font-size: 0.8rem;
 }
-.job-posting > a {
+.job-posting {
   text-decoration: none;
   color: white;
   font-weight: bold;
   background-color: #4fb075;
-  padding: 10px;
+  display: flex;
+  gap: 10px;
 }
 .job-posting >a:hover{
   background-color: #1945f5;
@@ -82,4 +83,34 @@
 .job-section{
   display: flex;
   background: #F7F7FB;
+}
+.jobs-for-you{
+  width: 100%;
+}
+.job-page{
+  width: 75%;
+}
+@media (max-width:855px)
+{
+.job-page{
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 10px;
+    
+}
+
+.job-detail>h4 {
+  font-size: 11px;
+}
+.job-detail>h3{
+  font-size: 15px;
+}.category>p{
+  font-size: 10px;
+  flex-wrap: wrap;
+}
+.job-card{
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
 }
