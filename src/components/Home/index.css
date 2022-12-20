@@ -55,3 +55,8 @@ span {
 .social-media > img {
   width: 70px;
 }
+  @media (max-width: 640px){
+    .title{
+      font-size: 25px;
+    }
+  }
