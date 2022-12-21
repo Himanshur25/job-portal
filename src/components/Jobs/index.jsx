@@ -108,7 +108,7 @@ const Jobs = () => {
                       </div>
                       <div className="job-button">
                         <div className="job-posting">
-                          <Link to="">Apply Now</Link>
+                          <Link to="/apply-jobs">Apply Now</Link>
                         </div>
                         <div className="save-button">
                           <Link

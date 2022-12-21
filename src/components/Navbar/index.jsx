@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import "./index.css";
 
 const Navbar = () => {
@@ -22,7 +22,7 @@ const Navbar = () => {
               <Link to="/post-job">Post Job</Link>
             </li>
             <li>
-              <Link to="/save-job">Saved Job</Link>
+              <Link to="/saved-job">Saved Job</Link>
             </li>
           </ul>
         </nav>
