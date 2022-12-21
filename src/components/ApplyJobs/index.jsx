@@ -6,7 +6,7 @@ const ApplyJobs = () => {
   const navigate=useNavigate();
   const [name,setName]=useState("")
   const OnformSubmit=()=>{
-    if(name==="" || name===" "){
+    if(name==="" ){
       alert("Please fill the name first")
     }
 else{
