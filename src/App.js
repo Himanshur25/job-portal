@@ -3,6 +3,7 @@ import Home from './components/Home';
 import Jobs from './components/Jobs';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PostJob from './components/PostJob';
+import SaveJobs from './components/SaveJobs';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route path="/Home" element={<Home />} />
             <Route path="/Jobs" element={<Jobs />} />
             <Route path="/Postjob" element={<PostJob />} />
+            <Route path="/Savejob" element={<SaveJobs />} />
           </Route>
         </Routes>
       </BrowserRouter>

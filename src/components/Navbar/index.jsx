@@ -22,7 +22,7 @@ const Navbar = () => {
               <Link to="/Postjob">Post Job</Link>
             </li>
             <li>
-              <Link to="">Save Job</Link>
+              <Link to="/Savejob">Saved Job</Link>
             </li>
           </ul>
         </nav>
