@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Navbar from "../Navbar";
 import "./index.css";
+import { useNavigate } from "react-router-dom";
 
 const PostJob = () => {
   const [company, setCompany] = useState("");
@@ -12,7 +13,7 @@ const PostJob = () => {
   const [role, setRole] = useState("");
   const [location, setLocation] = useState("");
 
-
+const navigate=useNavigate();
   const getBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -54,6 +55,7 @@ const PostJob = () => {
       }
       localStorage.setItem("item", JSON.stringify([...savedItem, {jobPost}]));
       window.alert("Form Submitted Successfully");
+      navigate("/Jobs");
     }
   };
   return (
