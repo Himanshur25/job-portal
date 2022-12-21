@@ -12,10 +12,10 @@ function App() {
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
-            <Route path="/Home" element={<Home />} />
-            <Route path="/Jobs" element={<Jobs />} />
-            <Route path="/Postjob" element={<PostJob />} />
-            <Route path="/Savejob" element={<SaveJobs />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/jobs" element={<Jobs />} />
+            <Route path="/post-job" element={<PostJob />} />
+            <Route path="/save-job" element={<SaveJobs />} />
           </Route>
         </Routes>
       </BrowserRouter>
