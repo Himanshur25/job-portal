@@ -18,8 +18,8 @@ export default function Discussion() {
     if (name === "") {
       window.alert("Enter the credentials");
     } else {
-      setCommentList([
-        ...commentList,
+      setCommentList((prev) => [
+        ...prev,
         {
           name,
           comment: commentRef.current.innerHTML,

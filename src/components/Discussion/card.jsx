@@ -2,7 +2,6 @@ import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { MdOutlineReply } from "react-icons/md";
 import parse from "html-react-parser";
-import Reply from "./reply";
 
 const Card = ({ value, onDelete }) => {
   const { id, name, comment, rating } = value;
