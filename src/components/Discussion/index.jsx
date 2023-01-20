@@ -13,9 +13,8 @@ export default function Discussion() {
   const [rating, setRating] = useState(0);
   const [commentList, setCommentList] = useState([]);
   const [imageUrl, setImageUrl] = useState("");
-  const [file, setFile] = useState();
   const commentRef = useRef();
-  const onClickHandler = (e) => {
+  const ClickHandler = (e) => {
     e.preventDefault();
     setName("");
     setImageUrl();
@@ -36,10 +35,10 @@ export default function Discussion() {
     }
     commentRef.current.innerHTML = "";
   };
-  const onNameChangeHandler = (e) => {
+  const NameChangeHandler = (e) => {
     setName(e.target.value);
   };
-  const onChangeHandler = (e) => {
+  const CommentChangeHandler = (e) => {
     const target = e.currentTarget;
     const value = e.currentTarget.textContent;
     const length = value.length;
@@ -59,7 +58,7 @@ export default function Discussion() {
     setImageUrl(value?.match(urlRegex));
   };
 
-  const onDelete = (index) => {
+  const Delete = (index) => {
     let deleteList = [...commentList];
     deleteList.splice(index, 1);
     setCommentList(deleteList);
@@ -97,7 +96,7 @@ export default function Discussion() {
                     placeholder="Your name"
                     className="form-control"
                     value={name}
-                    onChange={onNameChangeHandler}
+                    onChange={NameChangeHandler}
                   />
                 </div>
               </div>
@@ -113,24 +112,21 @@ export default function Discussion() {
                 contentEditable="true"
                 data-placeholder="Join the discussion...."
                 value={comment}
-                onInput={onChangeHandler}
+                onInput={CommentChangeHandler}
                 ref={commentRef}
               />
               <div className="icon-button">
-                <Comment
-                  onUrlChange={setImageUrl}
-                  commentRef={commentRef}
-                />
+                <Comment onUrlChange={setImageUrl} commentRef={commentRef} />
 
-                <button className="submit" onClick={onClickHandler}>
+                <button className="submit" onClick={ClickHandler}>
                   Comment
                 </button>
               </div>
               <div className="only-image">
                 <img
                   src={imageUrl}
-                  className="image-preview"
-                  alt="no-img"
+                  className={`${imageUrl ? "image-text-editor" : ""}`}
+
                 />
               </div>
             </div>
@@ -140,7 +136,7 @@ export default function Discussion() {
       <div className="comment-section">
         <div className="comment-box">
           {commentList.map((data) => {
-            return <Card key={data.id} value={data} onDelete={onDelete} />;
+            return <Card key={data.id} value={data} onDelete={Delete} />;
           })}
         </div>
       </div>

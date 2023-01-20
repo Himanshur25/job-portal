@@ -8,7 +8,7 @@ import {
 } from "react-icons/im";
 import axios from "axios";
 const Comment = ({ onUrlChange, imageUrl, commentRef }) => {
-  function onHandleBold() {
+  function HandleBold() {
     let bold = document.createElement("b");
     if (window.getSelection) {
       var sel = window.getSelection();
@@ -46,7 +46,7 @@ const Comment = ({ onUrlChange, imageUrl, commentRef }) => {
       });
   }
 
-  function onHandleItalic() {
+  function HandleItalic() {
     const italic = document.createElement("i");
     if (window.getSelection) {
       var sel = window.getSelection();
@@ -58,7 +58,7 @@ const Comment = ({ onUrlChange, imageUrl, commentRef }) => {
       }
     }
   }
-  function onHandleUnderline() {
+  function HandleUnderline() {
     const underline = document.createElement("u");
     if (window.getSelection) {
       var sel = window.getSelection();
@@ -70,7 +70,7 @@ const Comment = ({ onUrlChange, imageUrl, commentRef }) => {
       }
     }
   }
-  function onHandleQuote() {
+  function HandleQuote() {
     const quaotaion = document.createElement("blockquote");
     if (window.getSelection) {
       var sel = window.getSelection();
@@ -86,13 +86,13 @@ const Comment = ({ onUrlChange, imageUrl, commentRef }) => {
   return (
     <>
       <div className="styling-buttons">
-        <button type="button" className="bold" onClick={onHandleBold}>
+        <button type="button" className="bold" onClick={HandleBold}>
           <ImBold />
         </button>
-        <button type="button" className="italic" onClick={onHandleItalic}>
+        <button type="button" className="italic" onClick={HandleItalic}>
           <ImItalic />
         </button>
-        <button type="button" className="underline" onClick={onHandleUnderline}>
+        <button type="button" className="underline" onClick={HandleUnderline}>
           <ImUnderline />
         </button>
         <input
@@ -106,7 +106,7 @@ const Comment = ({ onUrlChange, imageUrl, commentRef }) => {
         <label htmlFor="image">
           <ImImage />
         </label>
-        <button type="button" className="code" onClick={onHandleQuote}>
+        <button type="button" className="code" onClick={HandleQuote}>
           <ImQuotesLeft />
         </button>
       </div>

@@ -3,7 +3,7 @@ import { AiFillDelete } from "react-icons/ai";
 import parse from "html-react-parser";
 import Reply from "./reply";
 
-const Card = ({ value, onDelete }) => {
+const Card = ({ value, Delete }) => {
   const { id, name, comment, rating, image } = value;
   const [isOpen, setIsOpen] = useState(false);
   const [count, setCount] = useState(0);
@@ -11,14 +11,13 @@ const Card = ({ value, onDelete }) => {
   const [toggle, setToggle] = useState(true);
   const [isToggle, setIsToggle] = useState(true);
   const [replyBox, setReplyBox] = useState(false);
-  const [file, setFile] = useState();
 
   function addReply(name, comment) {
     setReply((prevReply)=>[...prevReply, { name, comment }]);
     setIsOpen(!isOpen);
     setCount(count + 1);
   }
-  const onDeleteReply = (index) => {
+  const DeleteReply = (index) => {
     let deleteList = [...reply];
     deleteList.splice(index, 1);
     setReply(deleteList);
@@ -64,7 +63,7 @@ const Card = ({ value, onDelete }) => {
                     {replyBox ? "Hide Reply" : "Show Reply"} ({count})
                   </div>
                 </button>
-                <button className="delete" onClick={onDelete}>
+                <button className="delete" onClick={Delete}>
                   <AiFillDelete />
                 </button>
               </div>
@@ -88,7 +87,7 @@ const Card = ({ value, onDelete }) => {
                       <div>
                         <div className="comment">{parse(`${comment}`)}</div>
                         <div className="buttons">
-                          <button className="delete" onClick={onDeleteReply}>
+                          <button className="delete" onClick={DeleteReply}>
                             <AiFillDelete />
                           </button>
                         </div>
