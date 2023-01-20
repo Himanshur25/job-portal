@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
-import { MdOutlineReply } from "react-icons/md";
 import parse from "html-react-parser";
 import Reply from "./reply";
 
@@ -15,7 +14,7 @@ const Card = ({ value, onDelete }) => {
   const [file, setFile] = useState();
 
   function addReply(name, comment) {
-    setReply([...reply, { name, comment }]);
+    setReply((prevReply)=>[...prevReply, { name, comment }]);
     setIsOpen(!isOpen);
     setCount(count + 1);
   }
@@ -46,7 +45,7 @@ const Card = ({ value, onDelete }) => {
                 className={`${
                   image ? "image-text-editor" : "images-text-editor"
                 }`}
-                style={{ width: "150px"  }}
+                style={{ width: "150px" }}
               />
 
               <div className="buttons">

@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React from "react";
 import {
   ImBold,
   ImItalic,
@@ -7,11 +6,8 @@ import {
   ImImage,
   ImQuotesLeft,
 } from "react-icons/im";
-
 import axios from "axios";
-
 const Comment = ({ onUrlChange, imageUrl, commentRef }) => {
-  const [file, setFile] = useState();
   function onHandleBold() {
     let bold = document.createElement("b");
     if (window.getSelection) {

@@ -60,7 +60,7 @@ const Reply = ({ onAdd }) => {
             <img
               src={imageUrl}
               alt=""
-              style={{ height: "100px", marginLeft: "5%", marginTop: "10%" }}
+              className="image-preview"
             />
           </div>
         </div>

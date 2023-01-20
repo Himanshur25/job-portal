@@ -126,13 +126,9 @@
 }
 
 .reply {
-  /* margin-top: 10px; */
   width: 40px;
-  /* padding: 5px; */
   background: #fff;
   cursor: pointer;
-  /* margin-left: -8px; */
-  /* background: #f7cc53; */
   cursor: pointer;
   color: slategrey;
   opacity: 0.9;
@@ -150,10 +146,6 @@
   color: red;
   font-size: 17px;
 }
-/* .comment-form{
-      width: 31.5%;
-    margin-left: 33%;
-} */
 .reply-btn {
   font-size: 10px;
   background: #f6f8f9;
@@ -263,14 +255,6 @@ only-image .img {
   width: 70%;
   margin-left: 20%;
   cursor: pointer;
-}
-.commentt {
-  background: blue;
-  color: #fff;
-  padding: 2px 9px 2px 9px;
-  border-radius: 10px;
-  margin-right: -25%;
-  height: 28px;
 }
 .buttons .view-reply {
   color: grey;
