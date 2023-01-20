@@ -13,26 +13,57 @@
 .discussion .comment-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  border: 4px solid #f7cc53;
-  border-radius: 20px;
-  width: 350px;
-  margin-bottom: 20px;
+  gap: 10px;
+  width: 450px;
+  background: #fff;
 }
-.discussion .submit {
-  margin-top: 30px;
-  margin-left: 110px;
-  width: 120px;
-  padding: 5px;
-  color: black;
-  background: #f7cc53;
-  cursor: pointer;
-  border: 1px solid #000;
+.comment-name {
+  display: flex;
+  gap: 116px;
+  margin-bottom: 35px;
+}
+.comments-name {
+  margin-bottom: 15px;
+}
+.rating-text {
+  display: inline-block;
+  color: #546673;
+  margin-right: 4px;
+  font-weight: 500;
+  font-size: 14px;
+  margin-left: 5%;
+}
+.star-rating {
+  display: flex;
+  gap: 2px;
+}
+.icon-name {
+  display: flex;
+  gap: 9px;
+}
+.user-icon {
+  font-size: 30px;
 }
 .discussion .submit:hover {
   background: black;
-  color: #fff;
   transition: 1s ease;
+  cursor: pointer;
+}
+.icon-button {
+  display: flex;
+  align-items: center;
+  gap: 90px;
+  border: 2px solid #dbdfe4;
+  border-top: 0px solid #dbdfe4;
+  background: #f6f8f9;
+  height: 34px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.image-preview {
+  height: 100px;
+  margin-left: 5%;
+  margin-top: 10%;
 }
 .discussion .form-control {
   height: 35px;
@@ -41,12 +72,18 @@
 .discussion .comment {
   overflow: auto;
   overflow-wrap: break-word;
-  min-height: 115px;
+  min-height: 150px;
   height: auto;
   max-height: 300px;
+  border: 2px solid #dbdfe4;
+  padding: 19px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
-.discussion .comment:empty::before,.commenting-form .comment:empty::before {
+.discussion .comment:empty::before,
+.commenting-form .comment:empty::before {
   content: attr(data-placeholder);
+  font-size: 13px;
 }
 .discussion .comment-box {
   width: 300px;
@@ -60,37 +97,66 @@
   margin-top: 12px;
 }
 .comment-box .name {
-  font-size: 12px;
-  padding: 5px;
+  font-size: 17px;
+  padding: 4px;
   text-align: end;
+  color: blue;
+  font-weight: bold;
+  overflow: auto;
+  overflow-wrap: break-word;
 }
 .comment-box .comment {
-     margin-top: 3px;
-    overflow: auto;
-    overflow-wrap: break-word;
-    min-height: 115px;
-    height: auto;
-    max-height: 300px;
-    width: 100%;
+  overflow: auto;
+  overflow-wrap: break-word;
+  min-height: 40px;
+  height: auto;
+  max-height: 300px;
+  width: 100%;
 }
+.comment-box .comments {
+  margin-top: 3px;
+  overflow: auto;
+  overflow-wrap: break-word;
+  min-height: 90px;
+  height: auto;
+  max-height: 300px;
+  width: 100%;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
 .reply {
-  margin-top: 30px;
+  /* margin-top: 10px; */
   width: 40px;
-  padding: 5px;
-  background: red;
+  /* padding: 5px; */
+  background: #fff;
   cursor: pointer;
-  margin-left: -8px;
-  background: #f7cc53;
+  /* margin-left: -8px; */
+  /* background: #f7cc53; */
   cursor: pointer;
+  color: slategrey;
+  opacity: 0.9;
+}
+.reply:hover {
+  color: black;
+  opacity: 1;
 }
 .delete {
-  margin-top: 30px;
-  width: 27px;
+  width: 40px;
   padding: 5px;
-  background: red;
+  background: #f6f8f9;
   cursor: pointer;
-  margin-right: -8px;
   float: right;
+  color: red;
+  font-size: 17px;
+}
+/* .comment-form{
+      width: 31.5%;
+    margin-left: 33%;
+} */
+.reply-btn {
+  font-size: 10px;
+  background: #f6f8f9;
 }
 .job-role {
   display: flex;
@@ -126,24 +192,21 @@
   color: grey;
 }
 .line {
-  text-align: center;
-  font-size: 20px;
-  text-transform: uppercase;
-  margin-top: 20px;
-  font-weight: 500;
-  border-bottom: 2px solid black;
-  width: 100%;
+  font-weight: 700;
+  font-size: 18px;
+  color: #343434;
+  font-family: Georgia, times, serif;
 }
 .rating {
-  margin-top: -60px;
-  font-size: 17px;
-  float: right;
+  margin-top: 10px;
 }
 .review {
-  background: #f9f9f9;
-  margin-top: 30px;
   padding: 10px;
-  width: 72%;
+  width: 30%;
+  cursor: text;
+  margin-bottom: 20px;
+  background: #f6f8f9;
+  border-radius: 13px;
 }
 .comment-boxes {
   display: flex;
@@ -165,22 +228,19 @@
   margin-left: auto;
   margin-right: auto;
 }
-.commenting-form .submit {
-  margin-top: 30px;
-  margin: auto;
-  width: 120px;
-  padding: 5px;
-  color: black;
-  background: #f7cc53;
-  cursor: pointer;
-  border: 1px solid #000;
-}
+
 .styling-buttons {
   display: flex;
-  gap: 31px;
-  justify-content: center;
-  height: 20px;
-  margin-top: 10px;
+  gap: 12px;
+  justify-content: flex-start;
+}
+.submit {
+  background: blue;
+  color: #fff;
+  padding: 2px 9px 2px 9px;
+  border-radius: 10px;
+  margin-left: -25%;
+  height: 28px;
 }
 .bold,
 .italic,
@@ -189,31 +249,81 @@
 .comment-image {
   cursor: pointer;
   width: 30px;
-  background: #fff;
+  background: transparent;
 }
-.styling-buttons :hover {
-  transform: scale(1.12);
+.comment-left {
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
-.reply-section{
-      width: 70%;
-      margin-left: 20%;
-      cursor: pointer;
+only-image .img {
+  height: 100px;
 }
-.buttons .view-reply{
-  color: #3EA3F4;
-  font-size: 16px;
+.reply-section {
+  width: 70%;
+  margin-left: 20%;
   cursor: pointer;
-  background-color: #F9F9F9;
-  font-weight: bold;
 }
-.reply-count{
+.commentt {
+  background: blue;
+  color: #fff;
+  padding: 2px 9px 2px 9px;
+  border-radius: 10px;
+  margin-right: -25%;
+  height: 28px;
+}
+.buttons .view-reply {
+  color: grey;
+  font-size: 10px;
+  cursor: pointer;
+  background-color: #f6f8f9;
+  opacity: 0.9;
+}
+.buttons .view-reply:hover {
+  opacity: 1;
+  color: black;
+}
+.reply-count {
   margin-left: 10%;
 }
+.top-area {
+  display: flex;
+  justify-content: space-between;
+  margin: 3px;
+}
+.add-icon {
+  cursor: pointer;
+  font-size: 37px;
+  height: 38px;
+}
+.edit-button {
+  margin-left: 15%;
+  cursor: pointer;
+}
+.comments-form {
+  width: 31.5%;
+  margin-left: 35%;
+  background: none;
+}
+
 @media (max-width: 640px) {
-  .discussion .comment-form{
+  .discussion .comment-form {
     width: 270px;
   }
-  .discussion .submit{
+  .discussion .submit {
     margin-left: 72px;
   }
+  .buttons .view-reply {
+    font-size: 12px;
+  }
+}
+.image-text-editor {
+  height: 100px;
+  width: 100px;
+}
+.text-editor {
+  font-size: 10px;
+  font-weight: 100;
+  overflow: auto;
+  overflow-wrap: break-word;
 }
