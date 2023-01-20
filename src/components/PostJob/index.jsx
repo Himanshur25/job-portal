@@ -53,7 +53,7 @@ const navigate=useNavigate();
       if (localStorage.getItem("item")) {
         savedItem = JSON.parse(localStorage.getItem("item"));
       }
-      localStorage.setItem("item", JSON.stringify([...savedItem, {jobPost}]));
+      localStorage.setItem("item", JSON.stringify([...savedItem, {...jobPost}]));
       window.alert("Form Submitted Successfully");
       navigate("/Jobs");
     }

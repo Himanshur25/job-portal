@@ -1,6 +1,14 @@
 import { useState } from "react";
 import "./index.css";
 
+
+const experience = [
+  { min: 0, max: 1 },
+  { min: 2, max: 3 },
+  { min: 4, max: 5 },
+  { min: 5, max: 10 },
+];
+
 const Filter = ({
   setFilteredJobs,
   handleJobFilter,
