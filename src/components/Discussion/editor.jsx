@@ -7,7 +7,7 @@ import {
   ImQuotesLeft,
 } from "react-icons/im";
 import axios from "axios";
-const Comment = ({ onUrlChange, imageUrl, commentRef }) => {
+const Editor = ({ onUrlChange, imageUrl, commentRef }) => {
   function HandleBold() {
     let bold = document.createElement("b");
     if (window.getSelection) {
@@ -111,10 +111,15 @@ const Comment = ({ onUrlChange, imageUrl, commentRef }) => {
         </button>
       </div>
       <div className="image-url">
-        <img src={imageUrl} className={`${imageUrl ? "image-text-editor" : ""}`} style={{width: "100px"}}/>
+        {imageUrl && (
+          <img
+            src={imageUrl}
+            className={`${imageUrl ? "image-text-editor" : ""}`}
+          />
+        )}
       </div>
     </>
   );
 };
 
-export default Comment;
+export default Editor;

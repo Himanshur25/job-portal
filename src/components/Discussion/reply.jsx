@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useRef } from "react";
 import "./index.css";
-import Comment from "./editor";
+import Editor from "./editor";
 import { BiUserCircle } from "react-icons/bi";
 
 const Reply = ({ onAdd }) => {
@@ -47,7 +47,7 @@ const Reply = ({ onAdd }) => {
             ref={commentRef}
           />
           <div className="icon-button">
-            <Comment
+            <Editor
               onUrlChange={setImageUrl}
               commentRef={commentRef}
             />
@@ -57,11 +57,11 @@ const Reply = ({ onAdd }) => {
             </button>
           </div>
           <div className="only-image">
-            <img
+            {imageUrl && <img
               src={imageUrl}
               alt=""
               className="image-preview"
-            />
+            />}
           </div>
         </div>
       </form>

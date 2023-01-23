@@ -59,7 +59,7 @@
   height: 34px;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
-      margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .image-preview {
   height: 100px;
@@ -232,7 +232,7 @@
   color: #fff;
   padding: 2px 9px 2px 9px;
   border-radius: 10px;
-  margin-left: -25%;
+  margin-left: -2%;
   height: 28px;
 }
 .bold,
@@ -249,13 +249,21 @@
   gap: 20px;
   align-items: center;
 }
-only-image .img {
+.only-image .img {
   height: 100px;
 }
 .reply-section {
   width: 70%;
   margin-left: 20%;
   cursor: pointer;
+}
+.right .discuss {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 27px;
+  font-weight: bold;
+  color: blue;
 }
 .buttons .view-reply {
   color: grey;

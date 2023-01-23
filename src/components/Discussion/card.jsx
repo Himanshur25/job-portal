@@ -6,7 +6,6 @@ import Reply from "./reply";
 const Card = ({ value, Delete }) => {
   const { id, name, comment, rating, image } = value;
   const [isOpen, setIsOpen] = useState(false);
-  const [count, setCount] = useState(0);
   const [reply, setReply] = useState([]);
   const [toggle, setToggle] = useState(true);
   const [isToggle, setIsToggle] = useState(true);
@@ -15,13 +14,11 @@ const Card = ({ value, Delete }) => {
   function addReply(name, comment) {
     setReply((prevReply)=>[...prevReply, { name, comment }]);
     setIsOpen(!isOpen);
-    setCount(count + 1);
   }
   const DeleteReply = (index) => {
     let deleteList = [...reply];
     deleteList.splice(index, 1);
     setReply(deleteList);
-    setCount(count - 1);
   };
   return (
     <>
@@ -60,7 +57,7 @@ const Card = ({ value, Delete }) => {
                     className="view-reply"
                     onClick={() => setReplyBox(!replyBox)}
                   >
-                    {replyBox ? "Hide Reply" : "Show Reply"} ({count})
+                    {replyBox ? "Hide Reply" : "Show Reply"} ({reply.length})
                   </div>
                 </button>
                 <button className="delete" onClick={Delete}>
