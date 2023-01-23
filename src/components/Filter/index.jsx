@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./index.css";
 
-
 const experience = [
   { min: 0, max: 1 },
   { min: 2, max: 3 },
@@ -13,7 +12,7 @@ const Filter = ({
   setFilteredJobs,
   handleJobFilter,
   handleExperienceFilter,
-  searchEvent
+  searchEvent,
 }) => {
   const [checkedState, setCheckedState] = useState(
     new Array(experience.length).fill(false)
@@ -21,7 +20,7 @@ const Filter = ({
 
   const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
-    index === position ? !item : item
+      index === position ? !item : item
     );
 
     setCheckedState(updatedCheckedState);
@@ -46,12 +45,7 @@ const Filter = ({
             <div className="job-category">
               <h4>Categories</h4>
               <ul>
-                <li
-                  
-                  onClick={handleJobFilter}
-                >
-                  Frontend
-                </li>
+                <li onClick={handleJobFilter}>Frontend</li>
                 <li onClick={handleJobFilter}>Backend</li>
                 <li onClick={handleJobFilter}>Devops</li>
                 <li onClick={handleJobFilter}>Full Stack</li>

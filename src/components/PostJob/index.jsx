@@ -124,10 +124,10 @@ const navigate=useNavigate();
               <option disabled selected value>
                 Select position
               </option>
-              <option>Frontend</option>
-              <option>Backend</option>
-              <option>Full Stack</option>
-              <option>Devops</option>
+              <option>Frontend Developer</option>
+              <option>Backend Developer</option>
+              <option>FullStack Developer</option>
+              <option>Devops Engineer</option>
               <option>Digital Marketing</option>
             </select>
           </div>
@@ -206,7 +206,11 @@ const navigate=useNavigate();
             </select>
           </div>
           <div className="form-group">
-            <button type="submit" className="submit-button" onClick={handleSubmitButton}>
+            <button
+              type="submit"
+              className="submit-button"
+              onClick={handleSubmitButton}
+            >
               Submit
             </button>
           </div>

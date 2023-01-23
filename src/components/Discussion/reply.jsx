@@ -23,7 +23,7 @@ const Reply = ({ onAdd }) => {
       <form className="comments-form">
         <div className="input-group">
           <div className="comments-name">
-            <div className="icon-name">
+            <div className="reply-icon-name">
               <div className="user-icon">
                 <BiUserCircle />
               </div>
@@ -51,7 +51,7 @@ const Reply = ({ onAdd }) => {
             <Comment onUrlChange={setImageUrl} commentRef={commentRef} />
 
             <button
-              className="submit"
+              className="replied-comments"
               onClick={() => onAdd(name, commentRef.current.innerHTML)}
             >
               Comment

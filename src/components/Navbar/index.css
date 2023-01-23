@@ -7,7 +7,7 @@
 
 .banner-img{
 background:url("../../Assets/images/cool-background.png");
-height: 700px;
+height: 650px;
 background-size: cover;
 background-repeat: no-repeat;
 -webkit-clip-path: polygon(100% 0, 100% 90%, 0 95%, 0 0);
@@ -44,9 +44,9 @@ justify-content: center;
     background-clip: text;
     transition: 1s;
   }
-  #navbar ul li a:hover {
-    --_p: 0%;
-  }
+   #navbar ul li a.active{
+    color: blue;
+   }
   .logo >span{
     color: #f7cc53;
   }

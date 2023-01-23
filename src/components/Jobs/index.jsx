@@ -46,9 +46,6 @@ const Jobs = () => {
           .toLowerCase()
           .includes(searchterm.toLowerCase());
         }
-        else{
-          return 0;
-        }
       });
       setFilteredJobs(filterData);
     } else {
@@ -67,6 +64,9 @@ const Jobs = () => {
         });
         filters = [...filters, ...filterS];
       }
+      // else{
+      //   filters=[...Job]
+      // }
       setFilteredJobs(filters);
     });
   }

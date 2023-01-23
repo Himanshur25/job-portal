@@ -7,6 +7,7 @@ import SaveJobs from './components/SaveJobs';
 import Discussion from './components/Discussion';
 import ErrorPage from './components/ErrorPage';
 import ApplyJobs from './components/ApplyJobs';
+import LoginPage from './components/LoginPage';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route index element={<Home />} />
+            <Route index element={<LoginPage />} />
             <Route path="/home" element={<Home />} />
             <Route path="/jobs" element={<Jobs />} />
             <Route path="/post-job" element={<PostJob />} />

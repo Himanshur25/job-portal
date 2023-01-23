@@ -10,78 +10,91 @@ import sanityClient from "../../client";
 export default function Discussion() {
   const [comment, setComment] = useState("");
   const [name, setName] = useState("");
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(3);
   const [rating, setRating] = useState(0);
   const [commentList, setCommentList] = useState([]);
+  const [imageList, setImageList] = useState([]);
   const [imageUrl, setImageUrl] = useState("");
   const commentRef = useRef();
   const [data, setData] = useState(null);
   const ClickHandler = (e) => {
     e.preventDefault();
-    fetch(`https://kh2kvctg.api.sanity.io/v2021-06-07/data/mutate/production`, {
-      method: "post",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer skkHdZTqupKswDvAF8nPWuL5dMVPMFaKTm3VpPvCSEGFu9QQn8yJskr4mJCoBEHr08dXkIIVylHTZ98oZA5hAawMJANrd3vePdRKDMKq3ovHCFkcza7Rx6N60f9Ift3fkACBqwh5shATCH7R42oVCdRWKOA1k8CAM8p6HdNS9lCugxWwPppJ`,
-      },
-      body: JSON.stringify({
-        mutations: [
-          {
-            create: {
-              name,
-              content: commentRef.current.innerHTML.replace(imageUrl, ""),
-              rating,
-              _type:"Comment"
-            },
+    if (name === "" || commentRef === "" || rating === 0) {
+      window.alert("Enter the credentials");
+    } else {
+      fetch(
+        `https://kh2kvctg.api.sanity.io/v2021-06-07/data/mutate/production`,
+        {
+          method: "post",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer skkHdZTqupKswDvAF8nPWuL5dMVPMFaKTm3VpPvCSEGFu9QQn8yJskr4mJCoBEHr08dXkIIVylHTZ98oZA5hAawMJANrd3vePdRKDMKq3ovHCFkcza7Rx6N60f9Ift3fkACBqwh5shATCH7R42oVCdRWKOA1k8CAM8p6HdNS9lCugxWwPppJ`,
           },
-        ],
-      }),
-    })
-      .then((response) => response.json())
-      .then((result) => console.log(result))
-      .catch((error) => console.error(error));
-    setName("");
-
-    // if (name === "") {
-    //   window.alert("Enter the credentials");
-    // } else {
-    //   setCommentList((prev) => [
-    //     ...prev,
-    //     {
-    //       name,
-    //       comment: commentRef.current.innerHTML,
-    //       rating,
-    //       id: commentList.length + 1,
-    //       image: imageUrl,
-    //     },
-    //   ]);
-    //   setCount(count + 1);
-    // }
+          body: JSON.stringify({
+            mutations: [
+              {
+                create: {
+                  name,
+                  content: commentRef.current.innerHTML.replace(imageUrl, ""),
+                  rating,
+                  _type: "Comment",
+                },
+              },
+            ],
+          }),
+        }
+      )
+        .then((response) => response.json())
+        .then((result) => console.log(result))
+        .catch((error) => console.error(error));
+      setName("");
       setCount(count + 1);
-    commentRef.current.innerHTML = "";
-    setImageUrl();
+      commentRef.current.innerHTML = "";
+      setImageUrl();
+      // const commentAdd = data.unshift({
+      //   name,
+      //   content: commentRef.current.innerHTML.replace(imageUrl, ""),
+      //   rating,
+      //   // _type: "Comment",
+      // });
+      setData([...data, {
+        name,
+          content: commentRef.current.innerHTML.replace(imageUrl, ""),
+          rating,
+          _type: "Comment",
+      }]);
+    }
   };
   const NameChangeHandler = (e) => {
     setName(e.target.value);
   };
   const CommentChangeHandler = (e) => {
     const target = e.currentTarget;
-    const value = e.currentTarget.textContent;
+    const value = target.innerText;
+    console.log("🚀 ~ file: index.jsx:74 ~ CommentChangeHandler ~ value", value)
     const length = value.length;
 
     if (length === 0) {
       setImageUrl("");
     }
     var urlRegex = /(https?:\/\/[^\s]+)/g;
-    if (value.search(urlRegex) === 1) {
-      const url = value.replace(urlRegex, function (url) {
-        return '<a href="' + url + '">' + url + "</a>";
-      });
-      commentRef.current.innerHTML = url;
-    } else {
-      setImageUrl();
+
+    const urlInComment = value.match(urlRegex);
+    console.log("🚀 ~ file: index.jsx:83 ~ CommentChangeHandler ~ urlInComment", urlInComment)
+    
+    if (urlInComment) {
+      setImageList((previous)=>[urlInComment])
     }
-    setImageUrl(value?.match(urlRegex));
+      // if (value.search(urlRegex) === 1) {
+      //   const url = value.replace(urlRegex, function (url) {
+      //     return '<a href="' + url + '">' + url + "</a>";
+      //   });
+      //   commentRef.current.innerText = url;
+      // } else {
+      //   setImageUrl();
+      // }
+      setImageUrl(value?.match(urlRegex));
+    // setEndOfContenteditable();
   };
 
   const Delete = (id) => {
@@ -104,6 +117,10 @@ export default function Discussion() {
       .then((response) => response.json())
       .then((result) => console.log(result))
       .catch((error) => console.error(error));
+    let removeData = [...data];
+    console.log(data);
+    removeData.splice(id, 1);
+    setData(removeData);
   };
   useEffect(() => {
     sanityClient
@@ -124,19 +141,7 @@ export default function Discussion() {
       <Navbar />
       <div className="discussion">
         <div className="right">
-          <div
-            className="discuss"
-            style={{
-              textAlign: "center",
-              marginTop: "10px",
-              marginBottom: "10px",
-              fontSize: "27px",
-              fontWeight: "bold",
-              color: "blue",
-            }}
-          >
-            JOB DISQUS
-          </div>
+          <div className="discuss">JOB DISQUS</div>
 
           <form className="comment-form">
             <div className="input-group">
@@ -179,7 +184,7 @@ export default function Discussion() {
               </div>
               <div className="only-image">
                 <img
-                  src={imageUrl}
+                  src={imageList[0]}
                   className={`${
                     imageUrl ? "image-text-editor" : "images-text-editor"
                   }`}
@@ -193,7 +198,7 @@ export default function Discussion() {
         <div className="comment-box">
           {data &&
             data.map((dat) => {
-              console.log(dat);
+              // console.log(dat);
               return (
                 <Card
                   key={dat._id}

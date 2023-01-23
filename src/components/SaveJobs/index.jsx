@@ -33,8 +33,8 @@ const SaveJobs = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="job-posting">
-                    </div>
+                    {/* <div className="job-posting">
+                    </div> */}
                   </div>
                 </div>
               );

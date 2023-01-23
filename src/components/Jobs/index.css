@@ -59,9 +59,14 @@
   gap: 10px;
   padding: 10px;
 }
-.job-posting >a:hover{
-  background-color: #1945f5;
-  transition: 400ms ease-in-out;
+.job-posting >a{
+ text-decoration: none;
+    color: #fff;
+}
+.job-posting:hover{
+  background: blue;
+  cursor: pointer;
+  transition: 1s ease;
 }
 .category {
   display: flex;
