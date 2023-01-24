@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import {
   ImBold,
   ImItalic,
@@ -6,8 +7,8 @@ import {
   ImImage,
   ImQuotesLeft,
 } from "react-icons/im";
-import axios from "axios";
-const Comment = ({ onUrlChange, imageUrl, commentRef }) => {
+
+const Editor = ({ onUrlChange, commentRef }) => {
   function HandleBold() {
     let bold = document.createElement("b");
     if (window.getSelection) {
@@ -15,7 +16,7 @@ const Comment = ({ onUrlChange, imageUrl, commentRef }) => {
       if (sel.rangeCount) {
         var range = sel.getRangeAt(0).cloneRange();
         range.surroundContents(bold);
-        sel.removeAllRanges();
+        sel.removeAllRanges()
         sel.addRange(range);
       }
     }
@@ -40,9 +41,10 @@ const Comment = ({ onUrlChange, imageUrl, commentRef }) => {
         }
       )
       .then((res) => {
-        const url = res.data.secure_url;
-        onUrlChange(url);
-        commentRef.current.innerHTML += url;
+        const uploadImageUrl = res.data.secure_url;
+        onUrlChange(uploadImageUrl);
+        console.log(commentRef.current.innerHTML);
+        commentRef.current.innerHTML += uploadImageUrl;
       });
   }
 
@@ -111,14 +113,14 @@ const Comment = ({ onUrlChange, imageUrl, commentRef }) => {
         </button>
       </div>
       <div className="image-url">
-        <img
+        {/* <img
           src={imageUrl}
           className={`${imageUrl ? "image-text-editor" : ""}`}
           style={{ width: "100px" }}
-        />
+        /> */}
       </div>
     </>
   );
 };
 
-export default Comment;
+export default Editor;

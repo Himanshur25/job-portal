@@ -1,44 +1,32 @@
 import { useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
-import { MdOutlineReply } from "react-icons/md";
 import parse from "html-react-parser";
 import Reply from "./reply";
-import sanityClient from "../../client";
-import imageUrlBuilder from "@sanity/image-url";
 
-const Card = ({ value, onDelete }) => {
-  const { id, name, comment, rating, image, imageUrl } = value;
+var urlRegex = /(https?:\/\/[^\s]+)/g;
+
+const commentCard = ({ value, deleteComment }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [count, setCount] = useState(0);
   const [reply, setReply] = useState([]);
   const [toggle, setToggle] = useState(true);
-  const [isToggle, setIsToggle] = useState(true);
   const [replyBox, setReplyBox] = useState(false);
-
-  // console.log(value);
 
   function addReply(name, comment) {
     setReply([...reply, { name, comment }]);
     setIsOpen(!isOpen);
-    setCount(count + 1);
   }
 
-  const onDeleteReply = (index) => {
+  const deleteReply = (index) => {
     let deleteList = [...reply];
     deleteList.splice(index, 1);
     setReply(deleteList);
-    setCount(count - 1);
   };
 
-  const builder = imageUrlBuilder(sanityClient);
-
-  function urlFor(source) {
-    return builder.image(source);
-  }
-
+  const imageUrl = value?.content?.match(urlRegex); //it matches/check and match our content with the urlregex and store in imageurl
+  //The match() method retrieves the result of matching a string against a regular expression.
   return (
     <>
-      <div className="comment-boxes" key={value.id}>
+      <div className="comment-boxes" key={value._id}>
         <div className="review">
           <div className="top-area">
             <div className="comment-left">
@@ -52,15 +40,15 @@ const Card = ({ value, onDelete }) => {
           {toggle && (
             <div>
               <div className="comment">
-                {parse(value.content)}
+                {parse(value.content.replace(urlRegex, ""))}
               </div>
-              <img
-                src={`${value.content}`}
-                className={`${
-                  image ? "image-text-editor" : "images-text-editor"
-                }`}
-                style={{ width: "150px" }}
-              />
+              {imageUrl && (
+                <img
+                  src={imageUrl[0]}
+                  className={`${imageUrl ? "image-text-editor" : ""}`}
+                  style={{ width: "150px" }}
+                />
+              )}
 
               <div className="buttons">
                 <button
@@ -75,10 +63,10 @@ const Card = ({ value, onDelete }) => {
                     className="view-reply"
                     onClick={() => setReplyBox(!replyBox)}
                   >
-                    {replyBox ? "Hide Reply" : "Show Reply"} ({count})
+                    {replyBox ? "Hide Reply" : "Show Reply"} ({reply.length})
                   </div>
                 </button>
-                <button className="delete" onClick={onDelete}>
+                <button className="delete" onClick={deleteComment}>
                   <AiFillDelete />
                 </button>
               </div>
@@ -96,33 +84,16 @@ const Card = ({ value, onDelete }) => {
                   <div className="review">
                     <div className="top-area">
                       <div className="name"> {name}</div>
-                      {/* <div
-                        className="add-icon"
-                        onClick={() => setIsToggle(!isToggle)}
-                      >
-                        {isToggle ? "-" : "+"}
-                      </div> */}
                     </div>
-                    {isToggle && (
-                      <div>
-                        <div className="comment">{parse(`${comment}`)}</div>
-                        <div className="buttons">
-                          {/* <button
-                            type="button"
-                            className="reply"
-                            onClick={() => setIsOpen(!isOpen)}
-                          >
-                            <MdOutlineReply />
-                          </button> */}
-                          {/* <button className="edit-button" onClick={onEdit}>
-                  Edit
-                </button> */}
-                          <button className="delete" onClick={onDeleteReply}>
-                            <AiFillDelete />
-                          </button>
-                        </div>
+                    {/* {isToggle && ( */}
+                    <div>
+                      <div className="comment">{parse(`${comment}`)}</div>
+                      <div className="buttons">
+                        <button className="delete" onClick={deleteReply}>
+                          <AiFillDelete />
+                        </button>
                       </div>
-                    )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -134,4 +105,4 @@ const Card = ({ value, onDelete }) => {
   );
 };
 
-export default Card;
+export default commentCard;

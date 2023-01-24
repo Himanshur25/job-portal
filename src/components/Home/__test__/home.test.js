@@ -1,6 +1,7 @@
-import { render , screen , cleanup } from '@testing-library/react'
+import { render , screen  } from '@testing-library/react'
 import Home from '..';
 import { BrowserRouter, Route } from "react-router-dom";
+
 
 const MockHome = ()=> {
     return <BrowserRouter>

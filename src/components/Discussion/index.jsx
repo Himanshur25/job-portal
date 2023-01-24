@@ -2,24 +2,22 @@ import { useState, useRef, useEffect } from "react";
 import "./index.css";
 import Navbar from "../Navbar";
 import StarRating from "./rating";
-import Card from "./card";
-import Comment from "./editor";
+import CommentCard from "./commentCard";
+import Editor from "./editor";
 import { BiUserCircle } from "react-icons/bi";
 import sanityClient from "../../client";
 
+var urlRegex = /(https?:\/\/[^\s]+)/g;
+
 export default function Discussion() {
-  const [comment, setComment] = useState("");
   const [name, setName] = useState("");
-  const [count, setCount] = useState(3);
   const [rating, setRating] = useState(0);
-  const [commentList, setCommentList] = useState([]);
-  const [imageList, setImageList] = useState([]);
   const [imageUrl, setImageUrl] = useState("");
   const commentRef = useRef();
-  const [data, setData] = useState(null);
-  const ClickHandler = (e) => {
+  const [commentList, setCommentList] = useState(null);
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (name === "" || commentRef === "" || rating === 0) {
+    if (name === "" || commentRef === "") {
       window.alert("Enter the credentials");
     } else {
       fetch(
@@ -35,7 +33,7 @@ export default function Discussion() {
               {
                 create: {
                   name,
-                  content: commentRef.current.innerHTML.replace(imageUrl, ""),
+                  content: commentRef.current.innerText,
                   rating,
                   _type: "Comment",
                 },
@@ -47,57 +45,49 @@ export default function Discussion() {
         .then((response) => response.json())
         .then((result) => console.log(result))
         .catch((error) => console.error(error));
-      setName("");
-      setCount(count + 1);
-      commentRef.current.innerHTML = "";
-      setImageUrl();
-      // const commentAdd = data.unshift({
-      //   name,
-      //   content: commentRef.current.innerHTML.replace(imageUrl, ""),
-      //   rating,
-      //   // _type: "Comment",
-      // });
-      setData([...data, {
+
+      const commentAdd = commentList.unshift({
         name,
-          content: commentRef.current.innerHTML.replace(imageUrl, ""),
-          rating,
-          _type: "Comment",
-      }]);
+        content: commentRef.current.innerText,
+        rating,
+        _type: "Comment",
+      });
+      setName("");
+      setImageUrl("");
+      commentRef.current.innerText = "";
+      setCommentList(...commentAdd, ...commentList);
     }
   };
+
   const NameChangeHandler = (e) => {
     setName(e.target.value);
   };
   const CommentChangeHandler = (e) => {
     const target = e.currentTarget;
-    const value = target.innerText;
-    console.log("🚀 ~ file: index.jsx:74 ~ CommentChangeHandler ~ value", value)
+    const value = e.target.innerText;
     const length = value.length;
-
     if (length === 0) {
-      setImageUrl("");
+      setImageUrl();
     }
-    var urlRegex = /(https?:\/\/[^\s]+)/g;
 
     const urlInComment = value.match(urlRegex);
-    console.log("🚀 ~ file: index.jsx:83 ~ CommentChangeHandler ~ urlInComment", urlInComment)
-    
+
     if (urlInComment) {
-      setImageList((previous)=>[urlInComment])
+      setImageUrl((previous) => [urlInComment]);
     }
-      // if (value.search(urlRegex) === 1) {
-      //   const url = value.replace(urlRegex, function (url) {
-      //     return '<a href="' + url + '">' + url + "</a>";
-      //   });
-      //   commentRef.current.innerText = url;
-      // } else {
-      //   setImageUrl();
-      // }
-      setImageUrl(value?.match(urlRegex));
+    // if (value.search(urlRegex) === 1) {
+    //   const url = value.replace(urlRegex, function (url) {
+    //     return '<a href="' + url + '">' + url + "</a>";
+    //   });
+    //   commentRef.current.innerHTML = url;
+    // } else {
+    //   setImageUrl();
+    // }
+    setImageUrl(value?.match(urlRegex));
     // setEndOfContenteditable();
   };
 
-  const Delete = (id) => {
+  const deleteComment = (id) => {
     fetch(`https://kh2kvctg.api.sanity.io/v2021-06-07/data/mutate/production`, {
       method: "post",
       headers: {
@@ -117,10 +107,9 @@ export default function Discussion() {
       .then((response) => response.json())
       .then((result) => console.log(result))
       .catch((error) => console.error(error));
-    let removeData = [...data];
-    console.log(data);
+    let removeData = [...commentList];
     removeData.splice(id, 1);
-    setData(removeData);
+    setCommentList(removeData);
   };
   useEffect(() => {
     sanityClient
@@ -131,9 +120,11 @@ export default function Discussion() {
       content,
       rating,
       hexCode,
-    }`
+    } | order(_createdAt desc)`
       )
-      .then((data) => setData(data))
+      .then((commentList) => {
+        setCommentList(commentList);
+      })
       .catch(console.error);
   }, []);
   return (
@@ -146,7 +137,7 @@ export default function Discussion() {
           <form className="comment-form">
             <div className="input-group">
               <div className="comment-name">
-                <div className="line"> {count} Comments</div>
+                <div className="line"> {commentList?.length} Comments</div>
                 <div className="icon-name">
                   <div className="user-icon">
                     <BiUserCircle />
@@ -171,24 +162,25 @@ export default function Discussion() {
                 className="form-control comment"
                 contentEditable="true"
                 data-placeholder="Join the discussion...."
-                value={comment}
                 onInput={CommentChangeHandler}
                 ref={commentRef}
               />
               <div className="icon-button">
-                <Comment onUrlChange={setImageUrl} commentRef={commentRef} />
+                <Editor onUrlChange={setImageUrl} commentRef={commentRef} />
 
-                <button className="submit" onClick={ClickHandler}>
+                <button className="submit" onClick={handleSubmit}>
                   Comment
                 </button>
               </div>
               <div className="only-image">
-                <img
-                  src={imageList[0]}
-                  className={`${
-                    imageUrl ? "image-text-editor" : "images-text-editor"
-                  }`}
-                />
+                {imageUrl && (
+                  <img
+                    src={imageUrl[0]}
+                    className={`${
+                      imageUrl ? "image-text-editor" : "images-text-editor"
+                    }`}
+                  />
+                )}
               </div>
             </div>
           </form>
@@ -196,14 +188,13 @@ export default function Discussion() {
       </div>
       <div className="comment-section">
         <div className="comment-box">
-          {data &&
-            data.map((dat) => {
-              // console.log(dat);
+          {commentList &&
+            commentList?.map((comments) => {
               return (
-                <Card
-                  key={dat._id}
-                  value={dat}
-                  onDelete={() => Delete(dat._id)}
+                <CommentCard
+                  key={comments._id}
+                  value={comments}
+                  deleteComment={() => deleteComment(comments._id)}
                 />
               );
             })}
