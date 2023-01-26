@@ -17,6 +17,7 @@
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.7.0",
     "react-scripts": "5.0.1",
+    "react-spinners": "^0.13.8",
     "supertest": "^6.3.3",
     "ts-jest": "^29.0.5",
     "web-vitals": "^2.1.4"
@@ -24,7 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\" --detectOpenHandles --verbose",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

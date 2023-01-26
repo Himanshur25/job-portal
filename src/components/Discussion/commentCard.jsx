@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import parse from "html-react-parser";
 import Reply from "./reply";
+import { SyncLoader } from "react-spinners";
 
-var urlRegex = /(https?:\/\/[^\s]+)/g;
 
-const commentCard = ({ value, deleteComment }) => {
+var urlRegex = /\b(https?:\/\/[^\s]+)/g;
+
+const CommentCard = ({ value, deleteComment,spinner }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [reply, setReply] = useState([]);
   const [toggle, setToggle] = useState(true);
@@ -26,6 +28,11 @@ const commentCard = ({ value, deleteComment }) => {
   //The match() method retrieves the result of matching a string against a regular expression.
   return (
     <>
+      {spinner && (
+        <p className="image-loader">
+          <SyncLoader color="#36d7b7" />
+        </p>
+      )}
       <div className="comment-boxes" key={value._id}>
         <div className="review">
           <div className="top-area">
@@ -44,7 +51,7 @@ const commentCard = ({ value, deleteComment }) => {
               </div>
               {imageUrl && (
                 <img
-                  src={imageUrl[0]}
+                  src={imageUrl}
                   className={`${imageUrl ? "image-text-editor" : ""}`}
                   style={{ width: "150px" }}
                 />
@@ -66,7 +73,11 @@ const commentCard = ({ value, deleteComment }) => {
                     {replyBox ? "Hide Reply" : "Show Reply"} ({reply.length})
                   </div>
                 </button>
-                <button className="delete" onClick={deleteComment}>
+                <button
+                  role="delete"
+                  className="delete"
+                  onClick={deleteComment}
+                >
                   <AiFillDelete />
                 </button>
               </div>
@@ -105,4 +116,4 @@ const commentCard = ({ value, deleteComment }) => {
   );
 };
 
-export default commentCard;
+export default CommentCard;

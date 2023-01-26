@@ -1,10 +1,15 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter, Route } from "react-router-dom";
-import Discussion from '..'
-
-const request = require("supertest");
-// const discussion=require("..")
-
+import Discussion from "..";
+import CommentCard from "../commentCard";
+import Editor from "../editor";
+import axios from "axios";
+import DiscussionForm from "../index";
+import userEvent from "@testing-library/user-event";
+// jest.useFakeTimers();
+// jest.spyOn(console, "error").mockImplementation(() => {});
+jest.mock("axios");
+// jest.fn();
 
 const MockComment = () => {
   return (
@@ -13,33 +18,72 @@ const MockComment = () => {
     </BrowserRouter>
   );
 };
+const MockDiscussion = () => {
+  return (
+    <BrowserRouter>
+      <DiscussionForm />
+    </BrowserRouter>
+  );
+};
 
+describe("Comments", () => {
+  test("Renders correctly", () => {
+    render(<MockComment />);
+    const textElement = screen.getByText("Comments");
+    expect(textElement).toBeInTheDocument();
+  });
+});
 
-describe("Comments",()=>{
-    test("Renders correctly",()=>{
-        render (<MockComment />);
-        const textElement=screen.getByText("Comments");
-        expect(textElement).toBeInTheDocument();
-    })
-})
-// describe("Testing that fetching of all users data is working properly", () => {
-//   it("tests /api/comments endpoints", async () => {
-//     const response = await request().get(
-//       "https://kh2kvctg.api.sanity.io/v2021-06-07/data/export/production?types=Comment"
-//     );
-//     expect(response.statusCode).toBe(200);
-//     expect(typeof response.body == "object").toBe(true);
-//     expect(response.body.data).toEqual(
-//       expect.arrayContaining([expect.any(Object)])
-//     );
-//     // expect(response.body.data[0]).toEqual({
-//     //   id: 2,
-//     //   firstname: "Manoj",
-//     //   lastname: "Shukla",
-//     //   contact: "9898989898",
-//     //   email: "manoj@gmail.com",
-//     //   password: "$2b$10$0tVE1xA7gp55rKZNC.131u.ryva2O1SaQ04Y043TGOeurBzkrm5/S",
-//     //   isadmin: 1,
-//     // });
-//   });
-// });
+describe("<CommentCard>", () => {
+  const deleteComment = jest.fn();
+  const value = {
+    id: "syPd8qVyCPoQD7dljzzFdA",
+    name: "Himanshu",
+    rating: "0",
+    content: "https://www.w3schools.com/css/img_lights.jpg\nHello",
+  };
+  const { queryByRole } = render(
+    <CommentCard value={value} deleteComment={deleteComment} />
+  );
+  const button = queryByRole("delete");
+  fireEvent.click(button);
+  expect(deleteComment).toHaveBeenCalledTimes(1);
+});
+
+describe("Test the Editor Component", () => {
+  test("render the editor with 4 buttons", async () => {
+    render(<Editor />);
+    const buttonList = await screen.findAllByRole("button");
+    expect(buttonList).toHaveLength(4);
+  });
+  test("Image input should accept image only", () => {
+    render(<Editor />);
+    const image = screen.getByTestId("images-only");
+    userEvent.type(image, "https://www.w3schools.co");
+    expect(image.value).not.toMatch(
+      "https://www.w3schools.com/css/img_lights.jpg"
+    );
+  });
+  test("upload image file only", () => {
+    const file = new File(["accenture"], "accenture.jpeg", {
+      type: "image/jpeg",
+    });
+
+    render(<Editor />);
+    const input = screen.getByTestId("images-only");
+    userEvent.upload(input, file);
+
+    expect(input.files[0]).toStrictEqual(file);
+    expect(input.files.item(0)).toStrictEqual(file);
+    expect(input.files).toHaveLength(1);
+  });
+  test("Should be able to reset the comment", async () => {
+    const { getByTestId } = render(<MockDiscussion />);
+    const commentButton = getByTestId("reset-comment");
+    const name = screen.getByPlaceholderText("Your name");
+    const comment = screen.getByTestId("comment-test");
+    userEvent.click(commentButton);
+    expect(name.value).toMatch("");
+    expect(comment.value).toMatch("");
+  });
+});

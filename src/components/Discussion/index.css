@@ -94,11 +94,22 @@
   padding: 19px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  word-break: break-all;
 }
 .discussion .comment:empty::before,
 .commenting-form .comment:empty::before {
   content: attr(data-placeholder);
   font-size: 13px;
+}
+.image-loader{
+  margin-top: 60%;
+  margin-left: -50%;
+
+
+}
+.image-gif{
+  height: 40px;
+  width: 40px;
 }
 .discussion .comment-box {
   width: 300px;
@@ -127,6 +138,7 @@
   height: auto;
   max-height: 300px;
   width: 100%;
+    white-space: pre-wrap;
 }
 .comment-box .comments {
   margin-top: 3px;
@@ -213,6 +225,7 @@
   margin-bottom: 20px;
   background: #f6f8f9;
   border-radius: 13px;
+  margin-top: 40px;
 }
 .comment-boxes {
   display: flex;
@@ -316,9 +329,6 @@ only-image .img {
   .discussion .comment-form {
     width: 270px;
   }
-  /* .discussion .submit {
-    /* margin-left: 72px; */
-  /* }  */
   .comment-name {
     gap: 20px;
   }

@@ -6,15 +6,18 @@ import CommentCard from "./commentCard";
 import Editor from "./editor";
 import { BiUserCircle } from "react-icons/bi";
 import sanityClient from "../../client";
+import { SyncLoader } from "react-spinners";
 
-var urlRegex = /(https?:\/\/[^\s]+)/g;
+var urlRegex = /\b(https?:\/\/[^\s]+)/g;
 
 export default function Discussion() {
+  const [spinner, setSpinner] = useState(false);
   const [name, setName] = useState("");
   const [rating, setRating] = useState(0);
   const [imageUrl, setImageUrl] = useState("");
   const commentRef = useRef();
   const [commentList, setCommentList] = useState(null);
+  const [urlList, setUrlList] = useState([]);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name === "" || commentRef === "") {
@@ -63,18 +66,19 @@ export default function Discussion() {
     setName(e.target.value);
   };
   const CommentChangeHandler = (e) => {
-    const target = e.currentTarget;
-    const value = e.target.innerText;
-    const length = value.length;
-    if (length === 0) {
+    const value = e.currentTarget.innerText;
+    console.log("🚀 ~ file: index.jsx:69 ~ CommentChangeHandler ~ value", value)
+    const newLength = value?.length;
+    if (newLength === 0) {
+      setUrlList([]);
       setImageUrl();
+      return;
     }
 
-    const urlInComment = value.match(urlRegex);
-
-    if (urlInComment) {
-      setImageUrl((previous) => [urlInComment]);
-    }
+    // const urlInComment = value.match(urlRegex);
+    // if (urlInComment) {
+    //   setImageUrl((previous) => [urlInComment]);
+    // }
     // if (value.search(urlRegex) === 1) {
     //   const url = value.replace(urlRegex, function (url) {
     //     return '<a href="' + url + '">' + url + "</a>";
@@ -83,9 +87,22 @@ export default function Discussion() {
     // } else {
     //   setImageUrl();
     // }
-    setImageUrl(value?.match(urlRegex));
+    if (value?.match(urlRegex)) {
+      setUrlList(value?.match(urlRegex));
+    } else {
+      setUrlList([]);
+    }
+    // setImageUrl(value?.match(urlRegex));
     // setEndOfContenteditable();
   };
+
+  useEffect(() => {
+    if (urlList?.length !== 0) {
+      setImageUrl(urlList[0]);
+    } else {
+      setImageUrl("");
+    }
+  }, [urlList]);
 
   const deleteComment = (id) => {
     fetch(`https://kh2kvctg.api.sanity.io/v2021-06-07/data/mutate/production`, {
@@ -112,6 +129,8 @@ export default function Discussion() {
     setCommentList(removeData);
   };
   useEffect(() => {
+    setSpinner(true);
+
     sanityClient
       .fetch(
         `*[_type == "Comment"]{
@@ -123,6 +142,7 @@ export default function Discussion() {
     } | order(_createdAt desc)`
       )
       .then((commentList) => {
+        setSpinner(false);
         setCommentList(commentList);
       })
       .catch(console.error);
@@ -161,21 +181,26 @@ export default function Discussion() {
                 type="text"
                 className="form-control comment"
                 contentEditable="true"
+                data-testid="comment-test"
                 data-placeholder="Join the discussion...."
                 onInput={CommentChangeHandler}
                 ref={commentRef}
               />
               <div className="icon-button">
-                <Editor onUrlChange={setImageUrl} commentRef={commentRef} />
+                <Editor onUrlChange={setUrlList} commentRef={commentRef} />
 
-                <button className="submit" onClick={handleSubmit}>
+                <button
+                  className="submit"
+                  data-testid="reset-comment"
+                  onClick={handleSubmit}
+                >
                   Comment
                 </button>
               </div>
               <div className="only-image">
                 {imageUrl && (
                   <img
-                    src={imageUrl[0]}
+                    src={imageUrl}
                     className={`${
                       imageUrl ? "image-text-editor" : "images-text-editor"
                     }`}
