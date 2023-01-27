@@ -6,6 +6,7 @@ import Reply from "./reply";
 var imageUrlRegex = /\b(https?:\/\/[^\s]+)/g;
 
 const CommentCard = ({ value, deleteComment }) => {
+  const { _id, name, rating, content } = value;
   const [isOpen, setIsOpen] = useState(false);
   const [reply, setReply] = useState([]);
   const [toggle, setToggle] = useState(true);
@@ -24,12 +25,12 @@ const CommentCard = ({ value, deleteComment }) => {
   const imageUrl = value?.content?.match(imageUrlRegex);
   return (
     <>
-      <div className="comment-boxes" key={value._id}>
+      <div className="comment-boxes" key={_id}>
         <div className="review">
           <div className="top-area">
             <div className="comment-left">
-              <div className="name"> {value.name}</div>
-              <div className="rating">{value.rating}⭐️</div>
+              <div className="name"> {name}</div>
+              <div className="rating">{rating}⭐️</div>
             </div>
             <div className="add-icon" onClick={() => setToggle(!toggle)}>
               {toggle ? "-" : "+"}
@@ -38,7 +39,7 @@ const CommentCard = ({ value, deleteComment }) => {
           {toggle && (
             <div>
               <div className="comment">
-                {parse(value?.content?.replace(imageUrlRegex, ""))}
+                {parse(content?.replace(imageUrlRegex, ""))}
               </div>
               {imageUrl && (
                 <img

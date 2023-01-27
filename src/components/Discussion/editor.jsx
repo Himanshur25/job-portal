@@ -41,14 +41,14 @@ const Editor = ({ onUrlChange, commentRef }) => {
   }
 
   function textActions(textStyle) {
-    let actionsName = document.createElement(textStyle);
+    let styleTag = document.createElement(textStyle);
     if (window.getSelection) {
-      var sel = window.getSelection();
-      if (sel.rangeCount) {
-        var range = sel.getRangeAt(0).cloneRange();
-        range.surroundContents(actionsName);
-        sel.removeAllRanges();
-        sel.addRange(range);
+      var rangeSelection = window.getSelection();
+      if (rangeSelection.rangeCount) {
+        var range = rangeSelection.getRangeAt(0).cloneRange();
+        range.surroundContents(styleTag);
+        rangeSelection.removeAllRanges();
+        rangeSelection.addRange(range);
       }
     }
   }

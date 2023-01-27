@@ -6,8 +6,18 @@ import CommentCard from "./commentCard";
 import Editor from "./editor";
 import { BiUserCircle } from "react-icons/bi";
 import sanityClient from "../../client";
+import axios from "axios";
 
 var imageUrlRegex = /\b(https?:\/\/[^\s]+)/g;
+
+const config = {
+  url: `${process.env.REACT_APP_BASE_URL}`,
+  method: "post",
+  headers: {
+    "Content-type": "application/json",
+    Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`,
+  },
+};
 
 export default function Discussion() {
   const [name, setName] = useState("");
@@ -22,13 +32,9 @@ export default function Discussion() {
     if (name === "" || commentRef.length === "") {
       window.alert("Enter the credentials");
     } else {
-      fetch(`${process.env.REACT_APP_BASE_URL}`, {
-        method: "post",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`,
-        },
-        body: JSON.stringify({
+      axios({
+        ...config,
+        data: {
           mutations: [
             {
               create: {
@@ -39,9 +45,8 @@ export default function Discussion() {
               },
             },
           ],
-        }),
+        },
       })
-        .then((response) => response.json())
         .then((result) => console.log(result))
         .catch((error) => console.error(error));
 
@@ -85,13 +90,9 @@ export default function Discussion() {
   }, [urlList]);
 
   const deleteComment = (id) => {
-    fetch(`${process.env.REACT_APP_BASE_URL}`, {
-      method: "post",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`,
-      },
-      body: JSON.stringify({
+    axios({
+      ...config,
+      data: {
         mutations: [
           {
             delete: {
@@ -99,9 +100,8 @@ export default function Discussion() {
             },
           },
         ],
-      }),
+      },
     })
-      .then((response) => response.json())
       .then((result) => console.log(result))
       .catch((error) => console.error(error));
     let removeData = [...commentList];
