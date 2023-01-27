@@ -67,7 +67,10 @@ export default function Discussion() {
   };
   const CommentChangeHandler = (e) => {
     const value = e.currentTarget.innerText;
-    console.log("🚀 ~ file: index.jsx:69 ~ CommentChangeHandler ~ value", value)
+    console.log(
+      "🚀 ~ file: index.jsx:69 ~ CommentChangeHandler ~ value",
+      value
+    );
     const newLength = value?.length;
     if (newLength === 0) {
       setUrlList([]);
@@ -75,25 +78,11 @@ export default function Discussion() {
       return;
     }
 
-    // const urlInComment = value.match(urlRegex);
-    // if (urlInComment) {
-    //   setImageUrl((previous) => [urlInComment]);
-    // }
-    // if (value.search(urlRegex) === 1) {
-    //   const url = value.replace(urlRegex, function (url) {
-    //     return '<a href="' + url + '">' + url + "</a>";
-    //   });
-    //   commentRef.current.innerHTML = url;
-    // } else {
-    //   setImageUrl();
-    // }
     if (value?.match(urlRegex)) {
       setUrlList(value?.match(urlRegex));
     } else {
       setUrlList([]);
     }
-    // setImageUrl(value?.match(urlRegex));
-    // setEndOfContenteditable();
   };
 
   useEffect(() => {
@@ -201,6 +190,7 @@ export default function Discussion() {
                 {imageUrl && (
                   <img
                     src={imageUrl}
+                    data-testid="image-preview"
                     className={`${
                       imageUrl ? "image-text-editor" : "images-text-editor"
                     }`}

@@ -101,13 +101,11 @@
   content: attr(data-placeholder);
   font-size: 13px;
 }
-.image-loader{
+.image-loader {
   margin-top: 60%;
   margin-left: -50%;
-
-
 }
-.image-gif{
+.image-gif {
   height: 40px;
   width: 40px;
 }
@@ -138,7 +136,7 @@
   height: auto;
   max-height: 300px;
   width: 100%;
-    white-space: pre-wrap;
+  white-space: pre-wrap;
 }
 .comment-box .comments {
   margin-top: 3px;
@@ -258,7 +256,7 @@
   color: #fff;
   padding: 2px 9px 2px 9px;
   border-radius: 10px;
-  margin-left: -2%;
+  margin-left: 15%;
   height: 28px;
 }
 .replied-comments {

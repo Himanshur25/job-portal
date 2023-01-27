@@ -125,7 +125,6 @@ const Editor = ({ onUrlChange, commentRef }) => {
           <ImQuotesLeft />
         </button>
       </div>
-      <div className="image-url"></div>
     </>
   );
 };

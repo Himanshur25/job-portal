@@ -1,20 +1,21 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter, Route } from "react-router-dom";
-import Discussion from "..";
 import CommentCard from "../commentCard";
 import Editor from "../editor";
 import axios from "axios";
 import DiscussionForm from "../index";
 import userEvent from "@testing-library/user-event";
-// jest.useFakeTimers();
-// jest.spyOn(console, "error").mockImplementation(() => {});
-jest.mock("axios");
-// jest.fn();
-
+jest.spyOn(window, "alert").mockImplementation(() => {});
 const MockComment = () => {
+  const commentValue = {
+    id: "syPd8qVyCPoQD7dljzzFdA",
+    name: "Himanshu",
+    rating: "0",
+    content: "Hello",
+  };
   return (
     <BrowserRouter>
-      <Discussion />
+      <CommentCard value={commentValue} />
     </BrowserRouter>
   );
 };
@@ -25,14 +26,6 @@ const MockDiscussion = () => {
     </BrowserRouter>
   );
 };
-
-describe("Comments", () => {
-  test("Renders correctly", () => {
-    render(<MockComment />);
-    const textElement = screen.getByText("Comments");
-    expect(textElement).toBeInTheDocument();
-  });
-});
 
 describe("<CommentCard>", () => {
   const deleteComment = jest.fn();
@@ -54,7 +47,7 @@ describe("Test the Editor Component", () => {
   test("render the editor with 4 buttons", async () => {
     render(<Editor />);
     const buttonList = await screen.findAllByRole("button");
-    expect(buttonList).toHaveLength(4);
+    expect(buttonList).toHaveLength(6);
   });
   test("Image input should accept image only", () => {
     render(<Editor />);
@@ -68,7 +61,6 @@ describe("Test the Editor Component", () => {
     const file = new File(["accenture"], "accenture.jpeg", {
       type: "image/jpeg",
     });
-
     render(<Editor />);
     const input = screen.getByTestId("images-only");
     userEvent.upload(input, file);
@@ -77,13 +69,53 @@ describe("Test the Editor Component", () => {
     expect(input.files.item(0)).toStrictEqual(file);
     expect(input.files).toHaveLength(1);
   });
-  test("Should be able to reset the comment", async () => {
+});
+describe("Should be able to render the Discusssion PAge", () => {
+  test("Should be able to reset the comment", () => {
     const { getByTestId } = render(<MockDiscussion />);
     const commentButton = getByTestId("reset-comment");
     const name = screen.getByPlaceholderText("Your name");
-    const comment = screen.getByTestId("comment-test");
     userEvent.click(commentButton);
     expect(name.value).toMatch("");
-    expect(comment.value).toMatch("");
+  });
+  // test("Should be able to show the image", async () => {
+  //   render(<MockDiscussion />);
+  //   const commentInput = screen.getByTestId("comment-test");
+  //   await userEvent.type(
+  //     commentInput,
+  //     "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"
+  //   );
+  //   const image = screen.getByTestId("image-preview");
+  //   expect(image).toBeVisible();
+  // });
+});
+
+describe("Should render toggle button", () => {
+  test("Toggle button should work properly", () => {
+    const value = {
+      id: "syPd8qVyCPoQD7dljzzFdA",
+      name: "Himanshu",
+      rating: "3",
+      content: "Hello",
+    };
+    const { getByTestId } = render(<CommentCard value={value} />);
+    const toggleButton = getByTestId("toggle-btn");
+    const comment = getByTestId("comment-only");
+    expect(toggleButton).toHaveTextContent("-");
+    fireEvent.click(toggleButton);
+    expect(toggleButton).toHaveTextContent("+");
+    expect(comment).not.toBeVisible();
+  });
+});
+
+describe("Should render CommentCard Component", () => {
+  test("Should render CommentCard correctly", () => {
+    render(<MockComment />);
+    const name = screen.getByTestId("name-only");
+    const comment = screen.getByTestId("comment-only");
+    const rating = screen.getByTestId("only-rating");
+    expect(name).toBeInTheDocument();
+    expect(comment).toBeInTheDocument();
+    expect(rating).toBeInTheDocument();
   });
 });

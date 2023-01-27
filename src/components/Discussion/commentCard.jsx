@@ -37,16 +37,23 @@ const CommentCard = ({ value, deleteComment,spinner }) => {
         <div className="review">
           <div className="top-area">
             <div className="comment-left">
-              <div className="name"> {value.name}</div>
-              <div className="rating">{value.rating}⭐️</div>
+              <div className="name" data-testid="name-only">
+                {" "}
+                {value.name}
+              </div>
+              <div className="rating" data-testid="only-rating">{value.rating}⭐️</div>
             </div>
-            <div className="add-icon" onClick={() => setToggle(!toggle)}>
+            <div
+              className="add-icon"
+              data-testid="toggle-btn"
+              onClick={() => setToggle(!toggle)}
+            >
               {toggle ? "-" : "+"}
             </div>
           </div>
           {toggle && (
             <div>
-              <div className="comment">
+              <div className="comment" data-testid="comment-only">
                 {parse(value.content.replace(urlRegex, ""))}
               </div>
               {imageUrl && (
