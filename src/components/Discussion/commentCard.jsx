@@ -3,7 +3,7 @@ import { AiFillDelete } from "react-icons/ai";
 import parse from "html-react-parser";
 import Reply from "./reply";
 
-var urlRegex = /\b(https?:\/\/[^\s]+)/g;
+var imageUrlRegex = /\b(https?:\/\/[^\s]+)/g;
 
 const CommentCard = ({ value, deleteComment }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +21,7 @@ const CommentCard = ({ value, deleteComment }) => {
     setReply(deleteList);
   };
 
-  const imageUrl = value?.content?.match(urlRegex);
+  const imageUrl = value?.content?.match(imageUrlRegex);
   return (
     <>
       <div className="comment-boxes" key={value._id}>
@@ -38,7 +38,7 @@ const CommentCard = ({ value, deleteComment }) => {
           {toggle && (
             <div>
               <div className="comment">
-                {parse(value.content.replace(urlRegex, ""))}
+                {parse(value?.content?.replace(imageUrlRegex, ""))}
               </div>
               {imageUrl && (
                 <img

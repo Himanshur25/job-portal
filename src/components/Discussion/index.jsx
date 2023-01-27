@@ -7,7 +7,7 @@ import Editor from "./editor";
 import { BiUserCircle } from "react-icons/bi";
 import sanityClient from "../../client";
 
-var urlRegex = /\b(https?:\/\/[^\s]+)/g;
+var imageUrlRegex = /\b(https?:\/\/[^\s]+)/g;
 
 export default function Discussion() {
   const [name, setName] = useState("");
@@ -16,33 +16,31 @@ export default function Discussion() {
   const commentRef = useRef();
   const [commentList, setCommentList] = useState(null);
   const [urlList, setUrlList] = useState([]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (name === "" || comment.length === "") {
+    if (name === "" || commentRef.length === "") {
       window.alert("Enter the credentials");
     } else {
-      fetch(
-        `https://kh2kvctg.api.sanity.io/v2021-06-07/data/mutate/production`,
-        {
-          method: "post",
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `Bearer skkHdZTqupKswDvAF8nPWuL5dMVPMFaKTm3VpPvCSEGFu9QQn8yJskr4mJCoBEHr08dXkIIVylHTZ98oZA5hAawMJANrd3vePdRKDMKq3ovHCFkcza7Rx6N60f9Ift3fkACBqwh5shATCH7R42oVCdRWKOA1k8CAM8p6HdNS9lCugxWwPppJ`,
-          },
-          body: JSON.stringify({
-            mutations: [
-              {
-                create: {
-                  name,
-                  content: commentRef.current.innerText,
-                  rating,
-                  _type: "Comment",
-                },
+      fetch(`${process.env.REACT_APP_BASE_URL}`, {
+        method: "post",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`,
+        },
+        body: JSON.stringify({
+          mutations: [
+            {
+              create: {
+                name,
+                content: commentRef.current.innerText,
+                rating,
+                _type: "Comment",
               },
-            ],
-          }),
-        }
-      )
+            },
+          ],
+        }),
+      })
         .then((response) => response.json())
         .then((result) => console.log(result))
         .catch((error) => console.error(error));
@@ -71,8 +69,8 @@ export default function Discussion() {
       setImageUrl();
       return;
     }
-    if (value?.match(urlRegex)) {
-      setUrlList(value?.match(urlRegex));
+    if (value?.match(imageUrlRegex)) {
+      setUrlList(value?.match(imageUrlRegex));
     } else {
       setUrlList([]);
     }
@@ -87,11 +85,11 @@ export default function Discussion() {
   }, [urlList]);
 
   const deleteComment = (id) => {
-    fetch(`https://kh2kvctg.api.sanity.io/v2021-06-07/data/mutate/production`, {
+    fetch(`${process.env.REACT_APP_BASE_URL}`, {
       method: "post",
       headers: {
         "Content-type": "application/json",
-        Authorization: `Bearer skkHdZTqupKswDvAF8nPWuL5dMVPMFaKTm3VpPvCSEGFu9QQn8yJskr4mJCoBEHr08dXkIIVylHTZ98oZA5hAawMJANrd3vePdRKDMKq3ovHCFkcza7Rx6N60f9Ift3fkACBqwh5shATCH7R42oVCdRWKOA1k8CAM8p6HdNS9lCugxWwPppJ`,
+        Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`,
       },
       body: JSON.stringify({
         mutations: [

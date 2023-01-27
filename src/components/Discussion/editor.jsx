@@ -12,18 +12,6 @@ import { SyncLoader } from "react-spinners";
 
 const Editor = ({ onUrlChange, commentRef }) => {
   const [spinner, setSpinner] = useState(false);
-  function handleBold() {
-    let bold = document.createElement("b");
-    if (window.getSelection) {
-      var sel = window.getSelection();
-      if (sel.rangeCount) {
-        var range = sel.getRangeAt(0).cloneRange();
-        range.surroundContents(bold);
-        sel.removeAllRanges();
-        sel.addRange(range);
-      }
-    }
-  }
 
   function uploadImage(event) {
     const fileToUpload = event.target.files[0];
@@ -45,44 +33,20 @@ const Editor = ({ onUrlChange, commentRef }) => {
         }
       )
       .then((res) => {
-        setSpinner(false);
         const imageUrl = res.data.secure_url;
         onUrlChange((prev) => [...prev, imageUrl]);
         commentRef.current.innerText += imageUrl;
+        setSpinner(false);
       });
   }
 
-  function handleItalic() {
-    const italic = document.createElement("i");
+  function textActions(textStyle) {
+    let actionsName = document.createElement(textStyle);
     if (window.getSelection) {
       var sel = window.getSelection();
       if (sel.rangeCount) {
         var range = sel.getRangeAt(0).cloneRange();
-        range.surroundContents(italic);
-        sel.removeAllRanges();
-        sel.addRange(range);
-      }
-    }
-  }
-  function handleUnderline() {
-    const underline = document.createElement("u");
-    if (window.getSelection) {
-      var sel = window.getSelection();
-      if (sel.rangeCount) {
-        var range = sel.getRangeAt(0).cloneRange();
-        range.surroundContents(underline);
-        sel.removeAllRanges();
-        sel.addRange(range);
-      }
-    }
-  }
-  function handleQuote() {
-    const quaotaion = document.createElement("blockquote");
-    if (window.getSelection) {
-      var sel = window.getSelection();
-      if (sel.rangeCount) {
-        var range = sel.getRangeAt(0).cloneRange();
-        range.surroundContents(quaotaion);
+        range.surroundContents(actionsName);
         sel.removeAllRanges();
         sel.addRange(range);
       }
@@ -92,13 +56,21 @@ const Editor = ({ onUrlChange, commentRef }) => {
   return (
     <>
       <div className="styling-buttons">
-        <button type="button" className="bold" onClick={handleBold}>
+        <button type="button" className="bold" onClick={() => textActions("b")}>
           <ImBold />
         </button>
-        <button type="button" className="italic" onClick={handleItalic}>
+        <button
+          type="button"
+          className="italic"
+          onClick={() => textActions("i")}
+        >
           <ImItalic />
         </button>
-        <button type="button" className="underline" onClick={handleUnderline}>
+        <button
+          type="button"
+          className="underline"
+          onClick={() => textActions("u")}
+        >
           <ImUnderline />
         </button>
 
@@ -118,7 +90,11 @@ const Editor = ({ onUrlChange, commentRef }) => {
         <label htmlFor="image">
           <ImImage />
         </label>
-        <button type="button" className="code" onClick={handleQuote}>
+        <button
+          type="button"
+          className="code"
+          onClick={() => textActions("blockquote")}
+        >
           <ImQuotesLeft />
         </button>
       </div>
