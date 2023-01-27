@@ -1,4 +1,6 @@
 import React from "react";
+import { useState } from "react";
+import axios from "axios";
 import {
   ImBold,
   ImItalic,
@@ -6,9 +8,11 @@ import {
   ImImage,
   ImQuotesLeft,
 } from "react-icons/im";
-import axios from "axios";
-const Editor = ({ onUrlChange, imageUrl, commentRef }) => {
-  function HandleBold() {
+import { SyncLoader } from "react-spinners";
+
+const Editor = ({ onUrlChange, commentRef }) => {
+  const [spinner, setSpinner] = useState(false);
+  function handleBold() {
     let bold = document.createElement("b");
     if (window.getSelection) {
       var sel = window.getSelection();
@@ -23,6 +27,7 @@ const Editor = ({ onUrlChange, imageUrl, commentRef }) => {
 
   function uploadImage(event) {
     const fileToUpload = event.target.files[0];
+    setSpinner(true);
 
     var formData = new FormData();
     formData.append("file", fileToUpload);
@@ -40,13 +45,14 @@ const Editor = ({ onUrlChange, imageUrl, commentRef }) => {
         }
       )
       .then((res) => {
-        const url = res.data.secure_url;
-        onUrlChange(url);
-        commentRef.current.innerHTML+= url
+        setSpinner(false);
+        const imageUrl = res.data.secure_url;
+        onUrlChange((prev) => [...prev, imageUrl]);
+        commentRef.current.innerText += imageUrl;
       });
   }
 
-  function HandleItalic() {
+  function handleItalic() {
     const italic = document.createElement("i");
     if (window.getSelection) {
       var sel = window.getSelection();
@@ -58,7 +64,7 @@ const Editor = ({ onUrlChange, imageUrl, commentRef }) => {
       }
     }
   }
-  function HandleUnderline() {
+  function handleUnderline() {
     const underline = document.createElement("u");
     if (window.getSelection) {
       var sel = window.getSelection();
@@ -70,7 +76,7 @@ const Editor = ({ onUrlChange, imageUrl, commentRef }) => {
       }
     }
   }
-  function HandleQuote() {
+  function handleQuote() {
     const quaotaion = document.createElement("blockquote");
     if (window.getSelection) {
       var sel = window.getSelection();
@@ -86,15 +92,16 @@ const Editor = ({ onUrlChange, imageUrl, commentRef }) => {
   return (
     <>
       <div className="styling-buttons">
-        <button type="button" className="bold" onClick={HandleBold}>
+        <button type="button" className="bold" onClick={handleBold}>
           <ImBold />
         </button>
-        <button type="button" className="italic" onClick={HandleItalic}>
+        <button type="button" className="italic" onClick={handleItalic}>
           <ImItalic />
         </button>
-        <button type="button" className="underline" onClick={HandleUnderline}>
+        <button type="button" className="underline" onClick={handleUnderline}>
           <ImUnderline />
         </button>
+
         <input
           type="file"
           className="comment-image"
@@ -103,20 +110,17 @@ const Editor = ({ onUrlChange, imageUrl, commentRef }) => {
           id="image"
           style={{ display: "none" }}
         />
+        {spinner && (
+          <p className="image-loader">
+            <SyncLoader color="#36d7b7" />
+          </p>
+        )}
         <label htmlFor="image">
           <ImImage />
         </label>
-        <button type="button" className="code" onClick={HandleQuote}>
+        <button type="button" className="code" onClick={handleQuote}>
           <ImQuotesLeft />
         </button>
-      </div>
-      <div className="image-url">
-        {imageUrl && (
-          <img
-            src={imageUrl}
-            className={`${imageUrl ? "image-text-editor" : ""}`}
-          />
-        )}
       </div>
     </>
   );

@@ -9,16 +9,15 @@ const Reply = ({ onAdd }) => {
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const commentRef = useRef();
-  const onNameChangeHandler = (e) => {
+  const handleNameChange = (e) => {
     setName(e.target.value);
   };
-  const onChangeHandler = (e) => {
+  const handleCommentChange = (e) => {
     setComment(e.target.value);
   };
 
   return (
     <div>
-      
       <form className="comments-form">
         <div className="input-group">
           <div className="comments-name">
@@ -31,7 +30,7 @@ const Reply = ({ onAdd }) => {
                 placeholder="Your name"
                 className="form-control"
                 value={name}
-                onChange={onNameChangeHandler}
+                onChange={handleNameChange}
               />
             </div>
           </div>
@@ -43,25 +42,23 @@ const Reply = ({ onAdd }) => {
             contentEditable="true"
             data-placeholder="Join the discussion...."
             value={comment}
-            onInput={onChangeHandler}
+            onInput={handleCommentChange}
             ref={commentRef}
           />
           <div className="icon-button">
-            <Editor
-              onUrlChange={setImageUrl}
-              commentRef={commentRef}
-            />
+            <Editor onUrlChange={setImageUrl} commentRef={commentRef} />
 
-            <button className="submit" onClick={() => onAdd(name, commentRef.current.innerHTML)}>
+            <button
+              className="submit"
+              onClick={() => onAdd(name, commentRef.current.innerHTML)}
+            >
               Comment
             </button>
           </div>
           <div className="only-image">
-            {imageUrl && <img
-              src={imageUrl}
-              alt=""
-              className="image-preview"
-            />}
+            {imageUrl && (
+              <img src={imageUrl} alt="" className="image-preview" />
+            )}
           </div>
         </div>
       </form>
