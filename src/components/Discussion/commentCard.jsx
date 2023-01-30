@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import parse from "html-react-parser";
 import Reply from "./reply";
@@ -25,12 +25,11 @@ const CommentCard = ({ value, deleteComment }) => {
   const imageUrl = value?.content?.match(imageUrlRegex);
   return (
     <>
-      <div className="comment-boxes" key={_id}>
+      <div className="comment-boxes">
         <div className="review">
           <div className="top-area">
-            <div className="comment-left">
+            <div className="comment-left" key={_id}>
               <div className="name" data-testid="names">
-                {" "}
                 {name}
               </div>
               <div className="rating" data-testid="ratings">

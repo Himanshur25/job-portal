@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import CommentCard from "../commentCard";
 import Editor from "../editor";
@@ -7,10 +7,16 @@ import userEvent from "@testing-library/user-event";
 
 jest.spyOn(window, "alert").mockImplementation(() => {});
 
-const MockComment = () => {
+const MockComment = ({ deleteComment }) => {
+  const commentValue = {
+    _id: "syPd8qVyCPoQD7dljzzFdA",
+    name: "Himanshu",
+    rating: "0",
+    content: "https://www.w3schools.com/css/img_lights.jpg\nHello",
+  };
   return (
     <BrowserRouter>
-      <CommentCard />
+      <CommentCard value={commentValue} deleteComment={deleteComment} />
     </BrowserRouter>
   );
 };
@@ -21,61 +27,6 @@ const MockDiscussion = () => {
     </BrowserRouter>
   );
 };
-
-describe("Test the CommentCard component", () => {
-  test("Delete button should be called one time", () => {
-    const deleteComment = jest.fn();
-    const value = {
-      id: "syPd8qVyCPoQD7dljzzFdA",
-      name: "Himanshu",
-      rating: "0",
-      content: "https://www.w3schools.com/css/img_lights.jpg\nHello",
-    };
-    const { queryByRole } = render(
-      <CommentCard value={value} deleteComment={deleteComment} />
-    );
-    const button = queryByRole("delete");
-    fireEvent.click(button);
-    expect(deleteComment).toHaveBeenCalledTimes(1);
-  });
-});
-
-describe("Test the Editor Component", () => {
-  test("Should check that the editor component has 4 buttons", async () => {
-    render(<Editor />);
-    const buttonList = await screen.findAllByRole("button");
-    expect(buttonList).toHaveLength(4);
-  });
-  test("Image input should accept image only", () => {
-    render(<Editor />);
-    const image = screen.getByTestId("image-upload");
-    userEvent.type(image, "https://www.w3schools.co");
-    expect(image.value).not.toMatch(
-      "https://www.w3schools.com/css/img_lights.jpg"
-    );
-  });
-  test("upload image file only", () => {
-    const file = new File(["accenture"], "accenture.jpeg", {
-      type: "image/jpeg",
-    });
-    render(<Editor />);
-    const input = screen.getByTestId("image-upload");
-    userEvent.upload(input, file);
-
-    expect(input.files[0]).toStrictEqual(file);
-    expect(input.files.item(0)).toStrictEqual(file);
-    expect(input.files).toHaveLength(1);
-  });
-});
-describe("Should be able to render the Discusssion PAge", () => {
-  test("Should be able to reset the comment", () => {
-    const { getByTestId } = render(<MockDiscussion />);
-    const commentButton = getByTestId("reset-comment");
-    const name = screen.getByPlaceholderText("Your name");
-    userEvent.click(commentButton);
-    expect(name.value).toMatch("");
-  });
-});
 
 describe("Test the CommentCard component", () => {
   test("Should render CommentCard correctly", () => {
@@ -95,5 +46,53 @@ describe("Test the CommentCard component", () => {
     fireEvent.click(toggleButton);
     expect(toggleButton).toHaveTextContent("+");
     expect(comment).not.toBeVisible();
+  });
+  test("Delete button should be called one time", () => {
+    const deleteComment = jest.fn();
+    const { queryByRole } = render(
+      <MockComment deleteComment={deleteComment} />
+    );
+    const deleteButton = queryByRole("delete");
+    fireEvent.click(deleteButton);
+    expect(deleteComment).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("Test the Editor Component", () => {
+  test("Should check that the editor component has 4 Text style buttons", () => {
+    render(<Editor />);
+    const buttonList = screen.getAllByRole("button");
+    expect(buttonList).toHaveLength(4);
+  });
+  test("upload image file only", () => {
+    const file = new File(["accenture"], "accenture.jpeg", {
+      type: "image/jpeg",
+    });
+    render(<Editor />);
+    const input = screen.getByTestId("image-upload");
+    userEvent.upload(input, file);
+
+    expect(input.files[0]).toStrictEqual(file);
+    expect(input.files.item(0)).toStrictEqual(file);
+    expect(input.files).toHaveLength(1);
+  });
+});
+describe("Should be able to render the Discusssion Page", () => {
+  test("Should be able to reset the comment", () => {
+    const { getByTestId } = render(<MockDiscussion />);
+    const commentButton = getByTestId("reset-comment");
+    const name = screen.getByPlaceholderText("Your name");
+    const comment = screen.getByTestId("comment-section-test");
+    userEvent.click(commentButton);
+    expect(name.value).toMatch("");
+    expect(comment).toHaveTextContent("");
+  });
+  test("Image should be previewed after entering url", async () => {
+    render(<MockDiscussion />);
+    const commentSection = screen.getByTestId("comment-section-test");
+    commentSection.textContent =
+      "https://letsenhance.io/static/b8eda2f8914d307d52f725199fb0c5e6/62e7b/MainBefore.jpg";
+    const imagePreview = await screen.findByTestId("image-preview");
+    expect(imagePreview).toBeVisible();
   });
 });
