@@ -4,6 +4,14 @@
   justify-content: center;
   margin-top: 20px;
 }
+.discuss {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 27px;
+  font-weight: bold;
+  color: blue;
+}
 .right {
   display: flex;
   flex-direction: column;
@@ -21,6 +29,12 @@
   display: flex;
   gap: 116px;
   margin-bottom: 35px;
+  align-items: center;
+}
+.reply-icon-name {
+  display: flex;
+  gap: 9px;
+  margin-left: -10%;
 }
 .comments-name {
   margin-bottom: 15px;
@@ -80,11 +94,20 @@
   padding: 19px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  word-break: break-all;
 }
 .discussion .comment:empty::before,
 .commenting-form .comment:empty::before {
   content: attr(data-placeholder);
   font-size: 13px;
+}
+.image-loader {
+  margin-top: 60%;
+  margin-left: -50%;
+}
+.image-gif {
+  height: 40px;
+  width: 40px;
 }
 .discussion .comment-box {
   width: 300px;
@@ -113,6 +136,7 @@
   height: auto;
   max-height: 300px;
   width: 100%;
+  white-space: pre-wrap;
 }
 .comment-box .comments {
   margin-top: 3px;
@@ -171,7 +195,6 @@
   display: flex;
   flex-direction: column;
 }
-
 .rate-button {
   background-color: transparent;
   border: none;
@@ -195,11 +218,12 @@
 }
 .review {
   padding: 10px;
-  width: 30%;
+  width: 33%;
   cursor: text;
   margin-bottom: 20px;
   background: #f6f8f9;
   border-radius: 13px;
+  margin-top: 40px;
 }
 .comment-boxes {
   display: flex;
@@ -232,7 +256,15 @@
   color: #fff;
   padding: 2px 9px 2px 9px;
   border-radius: 10px;
-  margin-left: -2%;
+  margin-left: 15%;
+  height: 28px;
+}
+.replied-comments {
+  background: blue;
+  color: #fff;
+  padding: 2px 9px 2px 9px;
+  border-radius: 10px;
+  margin-left: -28%;
   height: 28px;
 }
 .bold,
@@ -249,21 +281,13 @@
   gap: 20px;
   align-items: center;
 }
-.only-image .img {
+only-image .img {
   height: 100px;
 }
 .reply-section {
   width: 70%;
   margin-left: 20%;
   cursor: pointer;
-}
-.right .discuss {
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 27px;
-  font-weight: bold;
-  color: blue;
 }
 .buttons .view-reply {
   color: grey;
@@ -294,8 +318,8 @@
   cursor: pointer;
 }
 .comments-form {
-  width: 31.5%;
-  margin-left: 35%;
+  width: 27.5%;
+  margin-left: 36%;
   background: none;
 }
 
@@ -303,11 +327,27 @@
   .discussion .comment-form {
     width: 270px;
   }
-  .discussion .submit {
-    margin-left: 72px;
+  .comment-name {
+    gap: 20px;
+  }
+  .styling-buttons {
+    gap: 5px;
+  }
+  .icon-button {
+    gap: 0px;
+  }
+  .input-group {
+    width: 123%;
   }
   .buttons .view-reply {
     font-size: 12px;
+  }
+  .bold,
+  .italic,
+  .underline,
+  .code,
+  .comment-image {
+    font-size: 10px;
   }
 }
 .image-text-editor {

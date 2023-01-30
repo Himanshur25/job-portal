@@ -1,4 +1,6 @@
 import React from "react";
+import { useState } from "react";
+import axios from "axios";
 import {
   ImBold,
   ImItalic,
@@ -6,23 +8,14 @@ import {
   ImImage,
   ImQuotesLeft,
 } from "react-icons/im";
-import axios from "axios";
-const Editor = ({ onUrlChange, imageUrl, commentRef }) => {
-  function HandleBold() {
-    let bold = document.createElement("b");
-    if (window.getSelection) {
-      var sel = window.getSelection();
-      if (sel.rangeCount) {
-        var range = sel.getRangeAt(0).cloneRange();
-        range.surroundContents(bold);
-        sel.removeAllRanges();
-        sel.addRange(range);
-      }
-    }
-  }
+import { SyncLoader } from "react-spinners";
+
+const Editor = ({ onUrlChange, commentRef }) => {
+  const [spinner, setSpinner] = useState(false);
 
   function uploadImage(event) {
     const fileToUpload = event.target.files[0];
+    setSpinner(true);
 
     var formData = new FormData();
     formData.append("file", fileToUpload);
@@ -40,45 +33,22 @@ const Editor = ({ onUrlChange, imageUrl, commentRef }) => {
         }
       )
       .then((res) => {
-        const url = res.data.secure_url;
-        onUrlChange(url);
-        commentRef.current.innerHTML+= url
+        const imageUrl = res.data.secure_url;
+        onUrlChange((prev) => [...prev, imageUrl]);
+        commentRef.current.innerText += imageUrl;
+        setSpinner(false);
       });
   }
 
-  function HandleItalic() {
-    const italic = document.createElement("i");
+  function textActions(textStyle) {
+    let styleTag = document.createElement(textStyle);
     if (window.getSelection) {
-      var sel = window.getSelection();
-      if (sel.rangeCount) {
-        var range = sel.getRangeAt(0).cloneRange();
-        range.surroundContents(italic);
-        sel.removeAllRanges();
-        sel.addRange(range);
-      }
-    }
-  }
-  function HandleUnderline() {
-    const underline = document.createElement("u");
-    if (window.getSelection) {
-      var sel = window.getSelection();
-      if (sel.rangeCount) {
-        var range = sel.getRangeAt(0).cloneRange();
-        range.surroundContents(underline);
-        sel.removeAllRanges();
-        sel.addRange(range);
-      }
-    }
-  }
-  function HandleQuote() {
-    const quaotaion = document.createElement("blockquote");
-    if (window.getSelection) {
-      var sel = window.getSelection();
-      if (sel.rangeCount) {
-        var range = sel.getRangeAt(0).cloneRange();
-        range.surroundContents(quaotaion);
-        sel.removeAllRanges();
-        sel.addRange(range);
+      var rangeSelection = window.getSelection();
+      if (rangeSelection.rangeCount) {
+        var range = rangeSelection.getRangeAt(0).cloneRange();
+        range.surroundContents(styleTag);
+        rangeSelection.removeAllRanges();
+        rangeSelection.addRange(range);
       }
     }
   }
@@ -86,15 +56,24 @@ const Editor = ({ onUrlChange, imageUrl, commentRef }) => {
   return (
     <>
       <div className="styling-buttons">
-        <button type="button" className="bold" onClick={HandleBold}>
+        <button type="button" className="bold" onClick={() => textActions("b")}>
           <ImBold />
         </button>
-        <button type="button" className="italic" onClick={HandleItalic}>
+        <button
+          type="button"
+          className="italic"
+          onClick={() => textActions("i")}
+        >
           <ImItalic />
         </button>
-        <button type="button" className="underline" onClick={HandleUnderline}>
+        <button
+          type="button"
+          className="underline"
+          onClick={() => textActions("u")}
+        >
           <ImUnderline />
         </button>
+
         <input
           type="file"
           className="comment-image"
@@ -103,20 +82,21 @@ const Editor = ({ onUrlChange, imageUrl, commentRef }) => {
           id="image"
           style={{ display: "none" }}
         />
+        {spinner && (
+          <p className="image-loader">
+            <SyncLoader color="#36d7b7" />
+          </p>
+        )}
         <label htmlFor="image">
           <ImImage />
         </label>
-        <button type="button" className="code" onClick={HandleQuote}>
+        <button
+          type="button"
+          className="code"
+          onClick={() => textActions("blockquote")}
+        >
           <ImQuotesLeft />
         </button>
-      </div>
-      <div className="image-url">
-        {imageUrl && (
-          <img
-            src={imageUrl}
-            className={`${imageUrl ? "image-text-editor" : ""}`}
-          />
-        )}
       </div>
     </>
   );
