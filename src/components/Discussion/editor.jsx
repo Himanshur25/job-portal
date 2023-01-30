@@ -79,6 +79,7 @@ const Editor = ({ onUrlChange, commentRef }) => {
           className="comment-image"
           accept="image/*"
           onInput={uploadImage}
+          data-testid="image-upload"
           id="image"
           style={{ display: "none" }}
         />
