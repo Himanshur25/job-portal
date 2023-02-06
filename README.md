@@ -1,4 +1,4 @@
-ONLIN JOB PORTAL USING REACT AND SANITY
+ONLINE JOB PORTAL USING REACT AND SANITY
 
 
 This website is all about searching the top jobs from top-reputed companies all over the world.
