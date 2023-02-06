@@ -158,6 +158,7 @@ export default function Discussion() {
                 type="text"
                 className="form-control comment"
                 contentEditable="true"
+                data-testid="comment-section-test"
                 data-placeholder="Join the discussion...."
                 onInput={handleCommentChange}
                 ref={commentRef}
@@ -177,6 +178,7 @@ export default function Discussion() {
                 {imageUrl && (
                   <img
                     src={imageUrl}
+                    data-testid="image-preview"
                     className={`${imageUrl ? "image-text-editor" : ""}`}
                   />
                 )}
