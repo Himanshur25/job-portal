@@ -1,0 +1,362 @@
+.discussion {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.discuss {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 27px;
+  font-weight: bold;
+  color: blue;
+}
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.discussion .comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 450px;
+  background: #fff;
+}
+.comment-name {
+  display: flex;
+  gap: 116px;
+  margin-bottom: 35px;
+  align-items: center;
+}
+.reply-icon-name {
+  display: flex;
+  gap: 9px;
+  margin-left: -10%;
+}
+.comments-name {
+  margin-bottom: 15px;
+}
+.rating-text {
+  display: inline-block;
+  color: #546673;
+  margin-right: 4px;
+  font-weight: 500;
+  font-size: 14px;
+  margin-left: 5%;
+}
+.star-rating {
+  display: flex;
+  gap: 2px;
+}
+.icon-name {
+  display: flex;
+  gap: 9px;
+}
+.user-icon {
+  font-size: 30px;
+}
+.discussion .submit:hover {
+  background: black;
+  transition: 1s ease;
+  cursor: pointer;
+}
+.icon-button {
+  display: flex;
+  align-items: center;
+  gap: 90px;
+  border: 2px solid #dbdfe4;
+  border-top: 0px solid #dbdfe4;
+  background: #f6f8f9;
+  height: 34px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  margin-bottom: 20px;
+}
+.image-preview {
+  height: 100px;
+  margin-left: 5%;
+  margin-top: 10%;
+}
+.discussion .form-control {
+  height: 35px;
+  padding: 19px;
+}
+.discussion .comment {
+  overflow: auto;
+  overflow-wrap: break-word;
+  min-height: 150px;
+  height: auto;
+  max-height: 300px;
+  border: 2px solid #dbdfe4;
+  padding: 19px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  word-break: break-all;
+}
+.discussion .comment:empty::before,
+.commenting-form .comment:empty::before {
+  content: attr(data-placeholder);
+  font-size: 13px;
+}
+.image-loader {
+  margin-top: 60%;
+  margin-left: -50%;
+}
+.image-gif {
+  height: 40px;
+  width: 40px;
+}
+.discussion .comment-box {
+  width: 300px;
+  background: #f9f9f9;
+  border-radius: 10px;
+}
+.comment-box .name,
+.comment-box .comment {
+  color: #000;
+  padding: 5px;
+  margin-top: 12px;
+}
+.comment-box .name {
+  font-size: 17px;
+  padding: 4px;
+  text-align: end;
+  color: blue;
+  font-weight: bold;
+  overflow: auto;
+  overflow-wrap: break-word;
+}
+.comment-box .comment {
+  overflow: auto;
+  overflow-wrap: break-word;
+  min-height: 40px;
+  height: auto;
+  max-height: 300px;
+  width: 100%;
+  white-space: pre-wrap;
+}
+.comment-box .comments {
+  margin-top: 3px;
+  overflow: auto;
+  overflow-wrap: break-word;
+  min-height: 90px;
+  height: auto;
+  max-height: 300px;
+  width: 100%;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.reply {
+  width: 40px;
+  background: #fff;
+  cursor: pointer;
+  cursor: pointer;
+  color: slategrey;
+  opacity: 0.9;
+}
+.reply:hover {
+  color: black;
+  opacity: 1;
+}
+.delete {
+  width: 40px;
+  padding: 5px;
+  background: #f6f8f9;
+  cursor: pointer;
+  float: right;
+  color: red;
+  font-size: 17px;
+}
+.reply-btn {
+  font-size: 10px;
+  background: #f6f8f9;
+}
+.job-role {
+  display: flex;
+  font-size: 20px;
+  font-weight: normal;
+  justify-content: center;
+  gap: 45px;
+  margin-top: 20px;
+}
+.job-role > h3 {
+  font-size: 18px;
+  margin-top: 6px;
+}
+.job-role > h2 {
+  font-size: 25px;
+}
+.discussion .comment-section {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.rate-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.on {
+  color: gold;
+}
+.off {
+  color: grey;
+}
+.line {
+  font-weight: 700;
+  font-size: 18px;
+  color: #343434;
+  font-family: Georgia, times, serif;
+}
+.rating {
+  margin-top: 10px;
+}
+.review {
+  padding: 10px;
+  width: 33%;
+  cursor: text;
+  margin-bottom: 20px;
+  background: #f6f8f9;
+  border-radius: 13px;
+  margin-top: 40px;
+}
+.comment-boxes {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.comments-boxes {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  margin-left: 120px;
+  margin-top: 0px;
+}
+.commenting-form {
+  width: 60%;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.styling-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+}
+.submit {
+  background: blue;
+  color: #fff;
+  padding: 2px 9px 2px 9px;
+  border-radius: 10px;
+  margin-left: 15%;
+  height: 28px;
+}
+.replied-comments {
+  background: blue;
+  color: #fff;
+  padding: 2px 9px 2px 9px;
+  border-radius: 10px;
+  margin-left: -28%;
+  height: 28px;
+}
+.bold,
+.italic,
+.underline,
+.code,
+.comment-image {
+  cursor: pointer;
+  width: 30px;
+  background: transparent;
+}
+.comment-left {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+only-image .img {
+  height: 100px;
+}
+.reply-section {
+  width: 70%;
+  margin-left: 20%;
+  cursor: pointer;
+}
+.buttons .view-reply {
+  color: grey;
+  font-size: 10px;
+  cursor: pointer;
+  background-color: #f6f8f9;
+  opacity: 0.9;
+}
+.buttons .view-reply:hover {
+  opacity: 1;
+  color: black;
+}
+.reply-count {
+  margin-left: 10%;
+}
+.top-area {
+  display: flex;
+  justify-content: space-between;
+  margin: 3px;
+}
+.add-icon {
+  cursor: pointer;
+  font-size: 37px;
+  height: 38px;
+}
+.edit-button {
+  margin-left: 15%;
+  cursor: pointer;
+}
+.comments-form {
+  width: 27.5%;
+  margin-left: 36%;
+  background: none;
+}
+
+@media (max-width: 640px) {
+  .discussion .comment-form {
+    width: 270px;
+  }
+  .comment-name {
+    gap: 20px;
+  }
+  .styling-buttons {
+    gap: 5px;
+  }
+  .icon-button {
+    gap: 0px;
+  }
+  .input-group {
+    width: 123%;
+  }
+  .buttons .view-reply {
+    font-size: 12px;
+  }
+  .bold,
+  .italic,
+  .underline,
+  .code,
+  .comment-image {
+    font-size: 10px;
+  }
+}
+.image-text-editor {
+  height: 100px;
+  width: 100px;
+}
+.text-editor {
+  font-size: 10px;
+  font-weight: 100;
+  overflow: auto;
+  overflow-wrap: break-word;
+}
