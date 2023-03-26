@@ -10,7 +10,7 @@ import ApplyJobs from './components/ApplyJobs';
 
 function App() {
   return (
-    <>
+    <div>
       <BrowserRouter>
         <Routes>
           <Route path="/">
@@ -25,7 +25,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

@@ -1,11 +1,14 @@
 import { useState } from "react";
 import "./index.css";
 
+
+
 const Filter = ({
   setFilteredJobs,
   handleJobFilter,
   handleExperienceFilter,
-  searchEvent
+  searchEvent,
+  experience
 }) => {
   const [checkedState, setCheckedState] = useState(
     new Array(experience.length).fill(false)

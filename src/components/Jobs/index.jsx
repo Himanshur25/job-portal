@@ -71,7 +71,7 @@ const Jobs = () => {
     });
   }
   return (
-    <>
+    <div>
       <Navbar />
       <div className="jobs-for-you">
         <div className="job-background">
@@ -81,7 +81,8 @@ const Jobs = () => {
         </div>
         <div className="job-section">
           <div className="job-page">
-            {filteredJobs.map(
+            {filteredJobs &&
+              filteredJobs.map(
               ({ id, logo, company, position, location, posted, role }) => {
                 return (
              
@@ -150,7 +151,7 @@ const Jobs = () => {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
