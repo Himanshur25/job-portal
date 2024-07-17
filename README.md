@@ -11,7 +11,7 @@ Now one surprise section added is of discussion Chamber which is connected with 
 A text-editor is added with functionalities of bold,italic,etc and image section where a user can just upload an image or can copy any image address from wherever and it will automatically preview image according to the type of input url using regex.
 User can reply the same thing as well at the same time.
 
-This website is fullt responsive..
+This website is fully responsive..
 
 
 
