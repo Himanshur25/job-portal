@@ -11,6 +11,7 @@ import ApplyJobs from './components/ApplyJobs';
 function App() {
   return (
     <>
+	  <h1>Added</h1>
       <BrowserRouter>
         <Routes>
           <Route path="/">

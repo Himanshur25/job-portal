@@ -1,0 +1,24 @@
+name: Publish Docker Image
+
+on:
+  push:
+    branches:
+      - harshan
+
+jobs:
+  build-and-push:
+    name: Build and Push Docker Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repos
+        uses: actions/checkout@v3 
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}"
+
+      - name: Build Docker
+        run: docker build -t harshan536/job-portal-app . 
+
+      - name: Push Docker image
+        run: docker push harshan536/job-portal-app
